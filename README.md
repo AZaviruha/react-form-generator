@@ -27,7 +27,7 @@ For full usage example see ```demo/client/main.js```.
 ### How do I get set up? ###
 
 ```shell
-git clone git@bitbucket.org:azaviruha/react-form-generator.git
+git clone git@github.com:AZaviruha/react-form-generator.git
 npm install
 gulp demo # or, if you don't have global gulp: ./node_modules/.bin/gulp demo
 ```
