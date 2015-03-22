@@ -1,0 +1,368 @@
+{
+    "fields": {
+        "field1": {
+            "renderer": "text",
+            "defaultValue": "test read-only value",
+            "isReadOnly": true
+        },
+        "field2": {
+            "renderer": "text"
+        },
+        "field3": {
+            "renderer": "text",
+            "validators": [
+                {
+                    "rule": "required",
+                    "message": "Field is required"
+                },
+                {
+                    "rule": "maxLength",
+                    "value": 5,
+                    "message": "Maximum length of field is 5 characters"
+                }
+            ]
+        }, 
+        "field4": {
+            "renderer": "text",
+            "validators": [
+                {
+                    "rule": "or",
+                    "value": [{ "rule": "numbers" }, 
+                              { "rule": "empty"}],
+                    "message": "Only numbers allowed"
+                }
+            ]
+        }, 
+        "field5": {
+            "renderer": "text",
+            "validators": [
+                {
+                    "rule": "and",
+                    "value": [{ 
+                        "rule": "minLength",
+                        "value": 3
+                    }, { 
+                        "rule": "maxLength",
+                        "value": 5
+                    }],
+                    "message": "Field's length should be between 3 and 5"
+                }
+            ]
+        }, 
+        "field6": {
+            "renderer": "textarea",
+            "isReadOnly": true
+        },
+        "field7": {
+            "renderer": "textarea",
+            "validators": [
+                {
+                    "rule": "and",
+                    "value": [{ 
+                        "rule": "minLength",
+                        "value": 3
+                    }, { 
+                        "rule": "maxLength",
+                        "value": 5
+                    }],
+                    "message": "Field's length should be between 3 and 5"
+                }
+            ]
+        }, 
+        "field8": {
+            "renderer": "checkbox",
+            "isReadOnly": false,
+            "rendererSpecific": {
+                "truthMap": {
+                    true:  1,
+                    false: 0
+                }
+            }
+        }, 
+        "field9": {
+            "renderer": "radiogroup",
+            "isReadOnly": false,
+            "defaultValue": "second",
+            "rendererSpecific": {
+                "possibleValues": [
+                    { id: "first", text: "First option", name: "fst" },
+                    { id: "second", text: "Second option", name: "snd" }
+                ]
+            }
+        },
+        "field10": {
+            "renderer": "select",
+            "isReadOnly": false,
+            "defaultValue": "second",
+            "rendererSpecific": {
+                "possibleValues": [
+                    { id: "first", text: "First option" },
+                    { id: "second", text: "Second option" },
+                    { id: "third", text: "Third option" }
+                ]
+            }
+        },
+        "field11": {
+            "renderer": "button",
+            "rendererSpecific": {
+                "text": "Save"
+            }
+        },
+        "field12": {
+            "renderer": "button",
+            "rendererSpecific": {
+                "text": "Clear"
+            }
+        }
+    },
+    "layout": {
+        "grid": {
+            "css": "container demo-form",
+            "rows": [{
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
+                    "content": [{
+                        "renderer": "default",
+                        "rendererSpecific": {
+                            "fieldID": "field1",
+                            "label": "Field #1:",
+                            "css": {
+                                "wrapper": "row",
+                                "inner": "",
+                                "label": "col-xs-12 col-sm-12 col-md-2",
+                                "field": "col-xs-12 col-sm-12 col-md-10"
+                            }
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
+                    "content": [{
+                        "renderer": "default",
+                        "rendererSpecific": {
+                            "fieldID": "field2",
+                            "label": "Field #2:",
+                            "css": {
+                                "wrapper": "row",
+                                "inner": "",
+                                "label": "col-xs-12 col-sm-12 col-md-2",
+                                "field": "col-xs-12 col-sm-12 col-md-10"
+                            }
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
+                    "content": [{
+                        "renderer": "label",
+                        "rendererSpecific": {
+                            "text": "Validation examples"
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
+                    "content": [{
+                        "renderer": "default",
+                        "rendererSpecific": {
+                            "fieldID": "field3",
+                            "label": "Field #3 (simple validation):",
+                            "css": {
+                                "wrapper": "row",
+                                "inner": "",
+                                "label": "col-xs-12 col-sm-12 col-md-2",
+                                "field": "col-xs-12 col-sm-12 col-md-10",
+                                "errors": "col-xs-12 col-sm-12 col-md-offset-2 col-md-10"
+                            }
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
+                    "content": [{
+                        "renderer": "default",
+                        "rendererSpecific": {
+                            "fieldID": "field4",
+                            "label": "Field #4 (\"or\" validator):",
+                            "css": {
+                                "wrapper": "row",
+                                "inner": "",
+                                "label": "col-xs-12 col-sm-12 col-md-2",
+                                "field": "col-xs-12 col-sm-12 col-md-10",
+                                "errors": "col-xs-12 col-sm-12 col-md-offset-2 col-md-10"
+                            }
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
+                    "content": [{
+                        "renderer": "default",
+                        "rendererSpecific": {
+                            "fieldID": "field5",
+                            "label": "Field #5 (\"and\" validator):",
+                            "css": {
+                                "wrapper": "row",
+                                "inner": "",
+                                "label": "col-xs-12 col-sm-12 col-md-2",
+                                "field": "col-xs-12 col-sm-12 col-md-10",
+                                "errors": "col-xs-12 col-sm-12 col-md-offset-2 col-md-10"
+                            }
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
+                    "content": [{
+                        "renderer": "label",
+                        "rendererSpecific": {
+                            "text": "Nested grid example"
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
+                    "content": [{
+                        "renderer": "grid",
+                        "rendererSpecific": {
+                            "css": "nested-layout-example",
+                            "rows": [{
+                                "css": "row",
+                                "cells": [{
+                                    "css": "col-xs-12 col-sm-12 col-md-6",
+                                    "content": [{
+                                        "renderer": "default",
+                                        "rendererSpecific": {
+                                            "fieldID": "field6",
+                                            "label": "Field #6:",
+                                            "css": {
+                                                "wrapper": "row",
+                                                "inner": "",
+                                                "label": "col-xs-12 col-sm-12 col-md-3",
+                                                "field": "col-xs-12 col-sm-12 col-md-9",
+                                                "errors": "col-xs-12 col-sm-12 col-md-offset-3 col-md-9"
+                                            }
+                                        }
+                                    }]
+                                }, {
+                                    "css": "col-xs-12 col-sm-12 col-md-6",
+                                    "content": [{
+                                        "renderer": "default",
+                                        "rendererSpecific": {
+                                            "fieldID": "field7",
+                                            "label": "Field #7 (with validation):",
+                                            "css": {
+                                                "wrapper": "row",
+                                                "inner": "",
+                                                "label": "col-xs-12 col-sm-12 col-md-3",
+                                                "field": "col-xs-12 col-sm-12 col-md-9",
+                                                "errors": "col-xs-12 col-sm-12 col-md-offset-3 col-md-9"
+                                            }
+                                        }
+                                    }]
+                                }]
+                            }]
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
+                    "content": [{
+                        "renderer": "label",
+                        "rendererSpecific": {
+                            "text": "Checkbox"
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
+                    "content": [{
+                        "renderer": "default",
+                        "rendererSpecific": {
+                            "fieldID": "field8",
+                            "label": "Field #8:",
+                            "css": {
+                                "wrapper": "row",
+                                "inner": "",
+                                "label": "col-xs-12 col-sm-12 col-md-2",
+                                "field": "col-xs-12 col-sm-12 col-md-10"
+                            }
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
+                    "content": [{
+                        "renderer": "default",
+                        "rendererSpecific": {
+                            "fieldID": "field9",
+                            "label": "Field #9:",
+                            "css": {
+                                "wrapper": "row",
+                                "inner": "",
+                                "label": "col-xs-12 col-sm-12 col-md-2",
+                                "field": "col-xs-12 col-sm-12 col-md-10"
+                            }
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
+                    "content": [{
+                        "renderer": "default",
+                        "rendererSpecific": {
+                            "fieldID": "field10",
+                            "label": "Field #10:",
+                            "css": {
+                                "wrapper": "row",
+                                "label": "col-xs-12 col-sm-12 col-md-2",
+                                "field": "col-xs-12 col-sm-12 col-md-10"
+                            }
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-6 col-md-10 col-md-offset-1",
+                    "content": [{
+                        "renderer": "unwrapped",
+                        "rendererSpecific": {
+                            "fieldID": "field11",
+                            "css": "btn col-xs-6 col-sm-6 col-md-2 col-md-offset-2"
+                        }
+                    }, {
+                        "renderer": "unwrapped",
+                        "rendererSpecific": {
+                            "fieldID": "field12",
+                            "css": "btn col-xs-6 col-sm-6 col-md-2 col-md-offset-1"
+                        }
+                    }]
+                }]
+            }]
+        }
+    }
+}
