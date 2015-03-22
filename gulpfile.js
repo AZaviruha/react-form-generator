@@ -50,11 +50,11 @@ gulp.task( 'compile-components',
 gulp.task( 'build-min-global', [ 'compile-components' ], function () {
     return gulp
         .src( 'src/components/compiled/generated-form.js' ) 
-        .pipe( replace('require( "react/dist/react-with-addons" )', 
+        .pipe( replace("require( 'react' )", 
                        'window.React'))
         .pipe( browserify() )
-        .pipe( replace( 'module.exports = ', 
-                        'window.GeneratedForm = '))
+        .pipe( replace( 'module.exports = formGenerator', 
+                        'window.FormGenerator = formGenerator'))
         .pipe( uglify() )
         .pipe( concat( 'react-form-generator.global.min.js' ) )
         .pipe( gulp.dest( 'dist/' ) );
@@ -71,7 +71,7 @@ gulp.task( 'compile-scss' , shell.task([
 
 
 /**
- * To build demo, execute
+ * To build "browserify" demo, execute
  * ```gulp build-demo```
  */
 gulp.task( 'build-demo', 
@@ -80,6 +80,29 @@ gulp.task( 'build-demo',
                .pipe( react() )
                .pipe( browserify() )
                .pipe( concat( 'bundle.js' ) )
+               .pipe( gulp.dest( 'demo/client/js/' ) );
+});
+
+
+/**
+ * To build "global script" demo, execute
+ * ```gulp build-demo2```
+ */
+gulp.task( 'copy-global-fg', [ 'build-min-global' ], function () {
+    return gulp.src( 'dist/*.js' )
+               .pipe( gulp.dest( 'demo/client/js/' ) );
+});
+gulp.task( 'copy-global-react', function () {
+    return gulp.src( 'node_modules/react/dist/react.js' )
+               .pipe( gulp.dest( 'demo/client/js/' ) );
+});
+gulp.task( 'build-demo2', 
+           [ 'copy-global-react', 'copy-global-fg', 
+             'compile-components', 'compile-scss' ], function () {
+    return gulp.src( 'demo/client/js/main2.js' )
+               .pipe( react() )
+               .pipe( browserify() )
+               .pipe( concat( 'bundle2.js' ) )
                .pipe( gulp.dest( 'demo/client/js/' ) );
 });
 
@@ -114,7 +137,3 @@ gulp.task( 'test', [ 'build-tests' ], function ( done ) {
     }, done );
 });
 
-
-gulp.task( 'default', [ 'compile-components', 
-                        'build-min-global', 
-                        'demo' ] );

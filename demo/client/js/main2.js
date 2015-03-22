@@ -1,20 +1,12 @@
-/** @jsx React.DOM */
-
 var $     = require( 'jquery' )
   , React = require( 'react' )
   , log   = window.log = require( 'front-log' )
-  , FG    = require( '../../../src/components/compiled/generated-form' )
+  , FG    = window.FormGenerator
   , t     = FG.tools
   , meta  = require( './meta.json' );
 
 log.debug( 'meta :: ', meta );
 
-/**
- * TODO:
- * - Типовые компоненты:
- *     - select
- * - Вложенные формы (портировать с рабочего)
- */
 
 $(function () {
     var GeneratedForm = FG({})
