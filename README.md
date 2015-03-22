@@ -43,5 +43,8 @@ The last command compiles demo and runs simple express server.
 
 
 ### Contributors ###
-* [azaviruha](https://github.com/azaviruha)
 * [afoninv](https://github.com/afoninv)
+
+
+Copyright (C) 2015 Alexei Zaviruha and contributors.
+Distributed under the MIT License
