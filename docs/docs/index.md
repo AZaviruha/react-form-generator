@@ -15,8 +15,7 @@ Let's start from building the simple form:
         frameborder="0">
 </iframe>
 
-To see our form, go to tab "Result". In the tab HTML, you can see some basic metadata, that Generator uses
-to render form.
+To see our form, go to the tab "Result". In the tab "HTML", you can see some basic metadata, that Generator uses to render form.
 
 ```javascript
 window.meta = {
@@ -61,7 +60,7 @@ window.meta = {
 
 At the top level, our metadata consists of two sections: `fields` and
 `layout`. The `fields` sections describes logical model of generated
-form, and `layout` section describes it's ... well, layout.
+form, and `layout` section describes ... well, layout.
 
 Logical model includes some essential information about each of
 fields: type (text, checkbox, etc.), visibility, readonly-ness,
@@ -70,5 +69,6 @@ validation rules and other.
 Layout describes form's presentation: how to draw each of fields in
 the page, where to drive field's label, field's erros of validation
 and so on.
+
 Layout system is *grid-based*. If you are familiar with bootstrap's
 grid system, then you know, what I mean.
