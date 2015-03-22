@@ -36,7 +36,7 @@ The last command compiles demo and runs simple express server.
 
 
 ### TODO ###
-* Add documentation (react-form-generator.github.io).
+* Add documentation.
 * Add unit-tests (a lot of!).
 * Add metadata expanders.
 * Add evetns routing.
