@@ -35,6 +35,13 @@ gulp demo # or, if you don't have global gulp: ./node_modules/.bin/gulp demo
 The last command compiles demo and runs simple express server.
 
 
+### TODO ###
+* Add documentation (react-form-generator.github.io).
+* Add unit-tests (a lot of!).
+* Add metadata expanders.
+* Add evetns routing.
+
+
 ### Contributors ###
 * [azaviruha](https://github.com/azaviruha)
 * [afoninv](https://github.com/afoninv)
