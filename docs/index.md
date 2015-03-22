@@ -7,17 +7,15 @@
 
 ### Basic form example
 
-Let's start from building the simple form
-To see our form, go to tab "Result":
-
+Let's start from building the simple form:
 <iframe width="100%" 
         height="300" 
-        src="//jsfiddle.net/azaviruha/69z2wepo/4571/embedded/" 
+        src="//jsfiddle.net/azaviruha/69z2wepo/4581/embedded/" 
         allowfullscreen="allowfullscreen" 
         frameborder="0">
 </iframe>
 
-In the tab HTML, you can see some basic metadata, that Generator uses
+To see our form, go to tab "Result". In the tab HTML, you can see some basic metadata, that Generator uses
 to render form.
 
 ```javascript
