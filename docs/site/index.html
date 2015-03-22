@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="./img/favicon.ico">
 
-        <title>My Docs</title>
+        <title>react-form-generator</title>
 
         <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="./css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -35,7 +35,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href=".">My Docs</a>
+            <a class="navbar-brand" href=".">react-form-generator</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -52,32 +52,81 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#welcome-to-mkdocs">Welcome to MkDocs</a></li>
+        <li class="main active"><a href="#react-form-generator">react-form-generator</a></li>
         
-            <li><a href="#commands">Commands</a></li>
-        
-            <li><a href="#project-layout">Project layout</a></li>
+            <li><a href="#usage">Usage</a></li>
         
     
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="welcome-to-mkdocs">Welcome to MkDocs</h1>
-<p>For full documentation visit <a href="http://mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
-<ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs help</code> - Print this help message.</li>
-</ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
+<h1 id="react-form-generator">react-form-generator</h1>
+<h2 id="usage">Usage</h2>
+<p><em>react-form-generator</em> is pure (state-less) React component, that generates complex forms from declarative metadata.</p>
+<h3 id="basic-form-example">Basic form example</h3>
+<p>Let's start from building the simple form
+To see our form, go to tab "Result":</p>
+<iframe width="100%" 
+        height="300" 
+        src="//jsfiddle.net/azaviruha/69z2wepo/4571/embedded/" 
+        allowfullscreen="allowfullscreen" 
+        frameborder="0">
+</iframe>
+
+<p>In the tab HTML, you can see some basic metadata, that Generator uses
+to render form.</p>
+<pre><code class="javascript">window.meta = {
+    &quot;fields&quot;: {
+        &quot;field1&quot;: {
+            &quot;renderer&quot;: &quot;text&quot;,
+            &quot;defaultValue&quot;: &quot;test read-only value&quot;,
+            &quot;isReadOnly&quot;: true
+        },
+        &quot;field2&quot;: {
+            &quot;renderer&quot;: &quot;text&quot;
+        }
+    },
+
+    &quot;layout&quot;: {
+        &quot;grid&quot;: {
+            &quot;css&quot;: &quot;container demo-form&quot;,
+            &quot;rows&quot;: [{
+                &quot;css&quot;: &quot;row&quot;,
+                &quot;cells&quot;: [{
+                    &quot;css&quot;: &quot;col-xs-12 col-sm-12 col-md-10&quot;,
+                    &quot;content&quot;: [{
+                        &quot;renderer&quot;: &quot;default&quot;,
+                        &quot;rendererSpecific&quot;: {
+                            &quot;fieldID&quot;: &quot;field1&quot;,
+                            &quot;label&quot;: &quot;Field #1:&quot;,
+                            &quot;css&quot;: {
+                                &quot;wrapper&quot;: &quot;row&quot;,
+                                &quot;inner&quot;: &quot;&quot;,
+                                &quot;label&quot;: &quot;col-xs-2 col-sm-2 col-md-2&quot;,
+                                &quot;field&quot;: &quot;col-xs-10 col-sm-10 col-md-10&quot;
+                            }
+                        }
+                    }]
+                }]
+            },
+            ...]
+        }
+    }
+}
 </code></pre>
+
+<p>At the top level, our metadata consists of two sections: <code>fields</code> and
+<code>layout</code>. The <code>fields</code> sections describes logical model of generated
+form, and <code>layout</code> section describes it's ... well, layout.</p>
+<p>Logical model includes some essential information about each of
+fields: type (text, checkbox, etc.), visibility, readonly-ness,
+validation rules and other.</p>
+<p>Layout describes form's presentation: how to draw each of fields in
+the page, where to drive field's label, field's erros of validation
+and so on.
+Layout system is <em>grid-based</em>. If you are familiar with bootstrap's
+grid system, then you know, what I mean.</p>
 </div>
             
         </div>
