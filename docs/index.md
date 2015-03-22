@@ -67,7 +67,7 @@ fields: type (text, checkbox, etc.), visibility, readonly-ness,
 validation rules and other.
 
 Layout describes form's presentation: how to draw each of fields in
-the page, where to drive field's label, field's erros of validation
+the page, where to drive field's label, field's errors of validation
 and so on.
 
 Layout system is *grid-based*. If you are familiar with bootstrap's
