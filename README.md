@@ -1,4 +1,5 @@
 # State-less form generator #
+[![Docs][docs-image]][docs-url]
 
 ### Summary ###
 
@@ -21,7 +22,7 @@ Features:
                onChange={this.handleFormChanged}/>
 ```
 
-For full usage example see ```demo/client/main.js```.
+For full usage example see ```demo/client/main.js``` or [read the docs][docs-url].
 
 
 ### How do I get set up? ###
@@ -49,3 +50,6 @@ The last command compiles demo and runs simple express server.
 
 Copyright (C) 2015 Alexei Zaviruha and contributors.
 Distributed under the MIT License
+
+[docs-image]: https://readthedocs.org/projects/react-form-generator/badge/?version=latest
+[docs-url]: http://react-form-generator.readthedocs.org/en/latest/
