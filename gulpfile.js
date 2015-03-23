@@ -6,6 +6,7 @@ var gulp       = require( 'gulp' )
   , insert     = require( 'gulp-insert' )
   , browserify = require( 'gulp-browserify' )
   , shell      = require( 'gulp-shell' )
+  , path       = require( 'path' )
   , karma      = require( 'karma' ).server;
 
 
@@ -66,7 +67,9 @@ gulp.task( 'build-min-global', [ 'compile-components' ], function () {
  * ```gulp compile-scss```
  */
 gulp.task( 'compile-scss' , shell.task([
-    './node_modules/.bin/node-sass demo/client/scss/main.scss demo/client/css/main.css'
+    path.normalize( './node_modules/.bin/node-sass ' ) + 
+    path.normalize( 'demo/client/scss/main.scss ' ) + 
+    path.normalize( 'demo/client/css/main.css' )
 ]));
 
 
@@ -112,7 +115,7 @@ gulp.task( 'build-demo2',
  * ```gulp demo```
  */
 gulp.task( 'demo' , [ 'build-demo' ], shell.task([
-    'node ./app.js'
+    'node ' + path.normalize( './app.js' )
 ], { cwd: './demo/' }));
 
 
