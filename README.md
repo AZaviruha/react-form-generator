@@ -47,6 +47,7 @@ The last command compiles demo and runs simple express server.
 ### Contributors ###
 * [afoninv](https://github.com/afoninv)
 * [PolniyA](https://github.com/PolniyA)
+* [aleksandr-pushkarev](https://github.com/aleksandr-pushkarev)
 
 
 Copyright (C) 2015 Alexei Zaviruha and contributors.
