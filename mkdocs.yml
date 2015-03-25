@@ -1,0 +1,6 @@
+site_name: react-form-generator
+pages:
+- ['index.md', 'Home']
+- ['basic/simple-form.md', 'Basic', 'Simple form - a minimal working API']
+- ['basic/simple-validation.md', 'Basic', 'Simple validation']
+theme: readthedocs

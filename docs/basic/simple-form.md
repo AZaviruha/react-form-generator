@@ -1,11 +1,4 @@
-# react-form-generator
-
-## Usage
-
-*react-form-generator* is pure (state-less) React component, that generates complex forms from declarative metadata.
-
-
-### Basic form example
+<h3>Simple form - a minimal working API</h3>
 
 Let's start from building the simple form:
 <iframe width="100%" 
@@ -70,5 +63,5 @@ Layout describes form's presentation: how to draw each of fields in
 the page, where to drive field's label, field's errors of validation
 and so on.
 
-Layout system is *grid-based*. If you are familiar with bootstrap's
+Layout system is grid-based. If you are familiar with bootstrap's
 grid system, then you know, what I mean.
