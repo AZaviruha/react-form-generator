@@ -135,6 +135,7 @@ module.exports={
         "field8": {
             "renderer": "checkbox",
             "isReadOnly": false,
+            "defaultValue": 1,
             "rendererSpecific": {
                 "truthMap": {
                     true:  1,

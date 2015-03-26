@@ -143,6 +143,7 @@ module.exports={
         "field8": {
             "renderer": "checkbox",
             "isReadOnly": false,
+            "defaultValue": 1,
             "rendererSpecific": {
                 "truthMap": {
                     true:  1,
@@ -30040,9 +30041,11 @@ module.exports = function ( React, tools ) {
         /* ======================== Renders ========================== */
         /* =========================================================== */
         render: function () {
-            var config = this._conf()
-              , meta   = this._meta()
-              , spec   = this._spec();
+            var config   = this._conf()
+              , meta     = this._meta()
+              , spec     = this._spec()
+              , truthMap = getOrNull( spec, 'truthMap' )
+              , checked  = truthMap[ true ] === config.value;
 
             return (
                 React.createElement("input", {
@@ -30050,7 +30053,7 @@ module.exports = function ( React, tools ) {
                     type: "checkbox", 
                     className: "generated-checkbox-field", 
                     name: spec.name, 
-                    value: config.value, 
+                    checked: checked, 
                     readOnly: meta.isReadOnly, 
                     onChange: this.handleOnChange, 
                     onKeyPress: this.handleKeyPress})

@@ -9,12 +9,6 @@ var $     = require( 'jquery' )
 
 log.debug( 'meta :: ', meta );
 
-/**
- * TODO:
- * - Типовые компоненты:
- *     - select
- * - Вложенные формы (портировать с рабочего)
- */
 
 $(function () {
     var GeneratedForm = FG({})
