@@ -2,8 +2,7 @@
 
 #### evalDefaults
 
-Let's look one more on the example from previous
-[section][simple-validation], in particular on the `getInitialState` method:
+Let's look one more on the example from previous [section][simple-validation], in particular on the `getInitialState` method:
 ```javascript
 var FG            = window.FormGenerator
   , t             = window.FormGenerator.tools;
@@ -65,8 +64,7 @@ Here is JSFiddle example with default value and errors:
 </iframe>
 
 Of course, it's not very useful to show validation errors before user
-even starting to type anything. So in the [next section][simple-events-routing] you will see more
-real-like example of `validateForm` using.
+even starting to type anything. So in the [next section][simple-events-routing] you will see more real-like example of `validateForm` using.
 
 
 [simple-validation]: http://react-form-generator.readthedocs.org/en/latest/basic/simple-validation/ 
