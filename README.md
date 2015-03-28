@@ -50,8 +50,7 @@ The last command compiles demo and runs simple *express* server.
 * [aleksandr-pushkarev](https://github.com/aleksandr-pushkarev)
 
 
-Copyright (C) 2015 Alexei Zaviruha and contributors.
-Distributed under the MIT License
+Distributed under the MIT License (See LICENSE file).
 
 [docs-image]: https://readthedocs.org/projects/react-form-generator/badge/?version=latest
 [docs-url]: http://react-form-generator.readthedocs.org/en/latest/
