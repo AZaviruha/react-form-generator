@@ -34,14 +34,14 @@ npm install
 gulp demo # or, if you don't have global gulp: ./node_modules/.bin/gulp demo
 ```
 
-The last command compiles demo and runs simple express server.
+The last command compiles demo and runs simple *express* server.
 
 
 ### TODO ###
 * Add documentation.
-* Add unit-tests (a lot of!).
+* Add unit-tests.
 * Add metadata expanders.
-* Add evetns routing.
+* Add events routing helpers.
 
 
 ### Contributors ###
