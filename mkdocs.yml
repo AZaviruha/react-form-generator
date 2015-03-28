@@ -3,4 +3,6 @@ pages:
 - ['index.md', 'Home']
 - ['basic/simple-form.md', 'Basic', 'Simple form - a minimal working API']
 - ['basic/simple-validation.md', 'Basic', 'Simple validation']
+- ['basic/useful-helpers-defaults.md', 'Basic', 'Useful helpers - evaluating  defaults']
+- ['basic/simple-events-routing.md', 'Basic', 'Simple events routing']
 theme: readthedocs

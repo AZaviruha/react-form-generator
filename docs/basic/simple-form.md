@@ -3,7 +3,7 @@
 Let's start from building the simple form:
 <iframe width="100%" 
         height="300" 
-        src="//jsfiddle.net/azaviruha/69z2wepo/4581/embedded/" 
+        src="//jsfiddle.net/azaviruha/69z2wepo/5004/embedded/" 
         allowfullscreen="allowfullscreen" 
         frameborder="0">
 </iframe>
