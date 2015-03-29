@@ -18,11 +18,6 @@ describe( "tools/general.js", function () {
             var root = { a: { b: { c: [10,20,30] } } };
             expect( g.getOrDefault( root, 'a.b.c.1' ) ).toEqual( 20 );
         });
-
-        it( "should return existed value by index in nested array", function () {
-            var root = { a: { b: { c: [10,20,30] } } };
-            expect( g.getOrDefault( root, 'a.b.c.1' ) ).toEqual( 40 );
-        });
     });
 });
 
@@ -179,7 +174,8 @@ module.exports = {
     getOrNull:     getOrNull,
     arrayToObject: arrayToObject,
     reduce:        reduce,
-    merge:         merge
+    merge:         merge,
+    argsToArray:   argsToArray
 };
 
 },{}]},{},[1])

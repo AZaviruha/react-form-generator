@@ -153,8 +153,7 @@ gulp.task( 'build-component-tests', [ 'compile-components' ], function () {
 gulp.task( 'build-tools-tests', function () {
     return gulp.src( 'spec/tools/*.js' )
                .pipe( browserify() )
-               .pipe( concat( 'tools.spec.js' ) )
-               .pipe( gulp.dest( 'spec/' ) );
+               .pipe( gulp.dest( 'spec/compiled/tools/' ) );
 });
 
 

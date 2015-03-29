@@ -12,12 +12,12 @@ module.exports = function(config) {
         ],
         files: [
             { 
-                pattern:  'spec/component.spec.js',
+                pattern:  'spec/compiled/component/*.spec.js',
                 watched:  true,
                 included: true,
                 served:   true
             }, { 
-                pattern:  'spec/tools.spec.js',
+                pattern:  'spec/compiled/tools/*.js',
                 watched:  true,
                 included: true,
                 served:   true
