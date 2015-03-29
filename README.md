@@ -38,10 +38,9 @@ The last command compiles demo and runs simple *express* server.
 
 
 ### TODO ###
-* Add documentation.
-* Add unit-tests.
+* Add documentation (in progress).
+* Add unit-tests (in progress).
 * Add metadata expanders.
-* Add events routing helpers.
 
 
 ### Contributors ###
