@@ -10,6 +10,9 @@ var gulp       = require( 'gulp' )
   , karma      = require( 'karma' ).server;
 
 
+// ===========================================================//
+// ======================== React ============================//
+// ===========================================================//
 /**
  * Compiles all jsx primitives' renderers.
  */
@@ -45,6 +48,10 @@ gulp.task( 'compile-components',
 });
 
 
+// ===========================================================//
+// ======================== <script/> ========================//
+// ===========================================================//
+
 /**
  * Builds version for "<script/>"
  */
@@ -62,6 +69,10 @@ gulp.task( 'build-min-global', [ 'compile-components' ], function () {
 });
 
 
+// ===========================================================//
+// ======================== Styles ===========================//
+// ===========================================================//
+
 /**
  * To complie *.scss files into *css, run
  * ```gulp compile-scss```
@@ -72,6 +83,10 @@ gulp.task( 'compile-scss' , shell.task([
     path.normalize( 'demo/client/css/main.css' )
 ]));
 
+
+// ===========================================================//
+// ======================== Demo =============================//
+// ===========================================================//
 
 /**
  * To build "browserify" demo, execute
@@ -119,22 +134,37 @@ gulp.task( 'demo' , [ 'build-demo' ], shell.task([
 ], { cwd: './demo/' }));
 
 
+// ===========================================================//
+// ======================== Tests ============================//
+// ===========================================================//
+
 /**
  * Builds test specs.
  */
-gulp.task( 'build-tests', [ 'build' ], function () {
-    return gulp.src( 'spec/component/*.jsx' )
-               .pipe( react() )
+gulp.task( 'build-component-tests', [ 'compile-components' ], function () {
+    // return gulp.src( 'spec/component/*.jsx' )
+    //            .pipe( react() )
+    //            .pipe( browserify() )
+    //            .pipe( concat( 'component.spec.js' ) )
+    //            .pipe( gulp.dest( 'spec/' ) );
+});
+
+
+gulp.task( 'build-tools-tests', function () {
+    return gulp.src( 'spec/tools/*.js' )
                .pipe( browserify() )
-               .pipe( concat( 'bundle.spec.js' ) )
+               .pipe( concat( 'tools.spec.js' ) )
                .pipe( gulp.dest( 'spec/' ) );
 });
 
 
+var testDeps = [ 'build-component-tests'
+               , 'build-tools-tests'
+               ];
 /**
  * Runs unit-tests.
  */
-gulp.task( 'test', [ 'build-tests' ], function ( done ) {
+gulp.task( 'test', testDeps, function ( done ) {
     karma.start({
         configFile: __dirname + '/karma.conf.js'
     }, done );
