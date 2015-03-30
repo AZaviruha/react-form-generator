@@ -1,4 +1,4 @@
-<h3>Simple events routing</h3>
+<h2>Simple events routing</h2>
 
 As stated in the [previous section][useful-helpers-defaults], it's not very useful to show validation errors before user even starting to type anything. So, it this tutorial we will look at the better way to process form validation.
 

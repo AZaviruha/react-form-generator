@@ -54,5 +54,5 @@ Distributed under the MIT License (see LICENSE file).
 
 [docs-image]: https://readthedocs.org/projects/react-form-generator/badge/?version=latest
 [docs-url]: http://react-form-generator.readthedocs.org/en/latest/
-[npm-image]: http://img.shields.io/badge/npm-v0.0.2-green.svg
+[npm-image]: http://img.shields.io/badge/npm-v0.1.0-green.svg
 [npm-url]: https://www.npmjs.org/package/react-form-generator

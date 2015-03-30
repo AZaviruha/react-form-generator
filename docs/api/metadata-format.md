@@ -1,4 +1,4 @@
-<h3>Metadata format description</h3>
+<h2>Metadata format description</h2>
 
 WARNING! This is work-in-progress!
 
