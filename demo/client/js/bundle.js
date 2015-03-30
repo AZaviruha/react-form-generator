@@ -30590,7 +30590,8 @@ module.exports = {
     getOrNull:     getOrNull,
     arrayToObject: arrayToObject,
     reduce:        reduce,
-    merge:         merge
+    merge:         merge,
+    argsToArray:   argsToArray
 };
 
 },{}],176:[function(require,module,exports){

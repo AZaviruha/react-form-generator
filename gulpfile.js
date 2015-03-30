@@ -169,3 +169,15 @@ gulp.task( 'test', testDeps, function ( done ) {
     }, done );
 });
 
+
+// ===========================================================//
+// ======================== Watchers =========================//
+// ===========================================================//
+
+gulp.task( 'watch', [ 'build-demo' ], function() {
+    gulp.watch( './demo/client/scss/*.scss', [ 'compile-scss' ] );
+    gulp.watch( './src/components/primitives/*.jsx', [ 'compile-primitives' ] );
+    gulp.watch( './src/components/layouts/*.jsx', [ 'compile-layouts' ] );
+    gulp.watch( './src/components/*.jsx', [ 'compile-components' ] );
+    gulp.watch( './spec/**/*.js', [ 'test' ] );
+});
