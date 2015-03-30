@@ -86,8 +86,8 @@
             "defaultValue": "second",
             "rendererSpecific": {
                 "possibleValues": [
-                    { id: "first", text: "First option", name: "fst" },
-                    { id: "second", text: "Second option", name: "snd" }
+                    { "id": "first", "text": "First option", "name": "fst" },
+                    { "id": "second", "text": "Second option", "name": "snd" }
                 ]
             }
         },
@@ -97,9 +97,9 @@
             "defaultValue": "second",
             "rendererSpecific": {
                 "possibleValues": [
-                    { id: "first", text: "First option" },
-                    { id: "second", text: "Second option" },
-                    { id: "third", text: "Third option" }
+                    { "id": "first", "text": "First option" },
+                    { "id": "second", "text": "Second option" },
+                    { "id": "third", "text": "Third option" }
                 ]
             }
         },
