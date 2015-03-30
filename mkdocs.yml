@@ -5,4 +5,5 @@ pages:
 - ['basic/simple-validation.md', 'Basic', 'Simple validation']
 - ['basic/useful-helpers-defaults.md', 'Basic', 'Useful helpers - evaluating  defaults']
 - ['basic/simple-events-routing.md', 'Basic', 'Simple events routing']
+- ['api/metadata-format.md', 'API', 'Metadata format description']
 theme: readthedocs

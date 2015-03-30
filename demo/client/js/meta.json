@@ -3,7 +3,7 @@
         "field1": {
             "renderer": "text",
             "defaultValue": "test read-only value",
-            "isReadOnly": true
+            "isDisabled": true
         },
         "field2": {
             "renderer": "text"
@@ -51,7 +51,7 @@
         }, 
         "field6": {
             "renderer": "textarea",
-            "isReadOnly": true
+            "isDisabled": true
         },
         "field7": {
             "renderer": "textarea",
@@ -71,18 +71,18 @@
         }, 
         "field8": {
             "renderer": "checkbox",
-            "isReadOnly": false,
+            "isDisabled": false,
             "defaultValue": 1,
             "rendererSpecific": {
                 "truthMap": {
-                    true:  1,
-                    false: 0
+                    "true":  1,
+                    "false": 0
                 }
             }
         }, 
         "field9": {
             "renderer": "radiogroup",
-            "isReadOnly": false,
+            "isDisabled": false,
             "defaultValue": "second",
             "rendererSpecific": {
                 "possibleValues": [
@@ -93,7 +93,7 @@
         },
         "field10": {
             "renderer": "select",
-            "isReadOnly": false,
+            "isDisabled": false,
             "defaultValue": "second",
             "rendererSpecific": {
                 "possibleValues": [

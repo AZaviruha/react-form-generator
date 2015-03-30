@@ -68,7 +68,7 @@ module.exports={
         "field1": {
             "renderer": "text",
             "defaultValue": "test read-only value",
-            "isReadOnly": true
+            "isDisabled": true
         },
         "field2": {
             "renderer": "text"
@@ -116,7 +116,7 @@ module.exports={
         }, 
         "field6": {
             "renderer": "textarea",
-            "isReadOnly": true
+            "isDisabled": true
         },
         "field7": {
             "renderer": "textarea",
@@ -136,35 +136,35 @@ module.exports={
         }, 
         "field8": {
             "renderer": "checkbox",
-            "isReadOnly": false,
+            "isDisabled": false,
             "defaultValue": 1,
             "rendererSpecific": {
                 "truthMap": {
-                    true:  1,
-                    false: 0
+                    "true":  1,
+                    "false": 0
                 }
             }
         }, 
         "field9": {
             "renderer": "radiogroup",
-            "isReadOnly": false,
+            "isDisabled": false,
             "defaultValue": "second",
             "rendererSpecific": {
                 "possibleValues": [
-                    { id: "first", text: "First option", name: "fst" },
-                    { id: "second", text: "Second option", name: "snd" }
+                    { "id": "first", "text": "First option", "name": "fst" },
+                    { "id": "second", "text": "Second option", "name": "snd" }
                 ]
             }
         },
         "field10": {
             "renderer": "select",
-            "isReadOnly": false,
+            "isDisabled": false,
             "defaultValue": "second",
             "rendererSpecific": {
                 "possibleValues": [
-                    { id: "first", text: "First option" },
-                    { id: "second", text: "Second option" },
-                    { id: "third", text: "Third option" }
+                    { "id": "first", "text": "First option" },
+                    { "id": "second", "text": "Second option" },
+                    { "id": "third", "text": "Third option" }
                 ]
             }
         },
@@ -29973,7 +29973,7 @@ module.exports = function ( React, tools ) {
                 React.createElement("button", {
                     id: config.fieldID, 
                     className: className, 
-                    readOnly: meta.isReadOnly, 
+                    disabled: meta.isDisabled, 
                     onClick: this.handleClick}, spec.text)
             );
         }
@@ -30008,7 +30008,7 @@ module.exports = function ( React, tools ) {
         /* =========================================================== */
         handleOnChange: function ( e ) {
             var truthMap = getOrNull( this._spec(), 'truthMap' )
-              , checked  = e.target.checked
+              , checked  = e.target.checked ? 'true' : 'false'
               , value    = truthMap ? truthMap[ checked ] : checked;
 
             var res = { 
@@ -30039,7 +30039,7 @@ module.exports = function ( React, tools ) {
               , meta     = this._meta()
               , spec     = this._spec()
               , truthMap = getOrNull( spec, 'truthMap' )
-              , checked  = truthMap[ true ] === config.value;
+              , checked  = truthMap[ "true" ] === config.value;
 
             return (
                 React.createElement("input", {
@@ -30048,7 +30048,7 @@ module.exports = function ( React, tools ) {
                     className: "generated-checkbox-field", 
                     name: spec.name, 
                     checked: checked, 
-                    readOnly: meta.isReadOnly, 
+                    readOnly: meta.isReadOnly || meta.isDisabled, 
                     onChange: this.handleOnChange, 
                     onKeyPress: this.handleKeyPress})
             );
@@ -30124,8 +30124,9 @@ module.exports = function ( React, tools ) {
               , meta   = this._meta();
 
             return (items || []).map(function ( item, idx ) {
-                var value     = getOrNull( config, 'value' )
-                  , isChecked = item.id === value;
+                var value      = getOrNull( config, 'value' )
+                  , isChecked  = item.id === value
+                  , isReadOnly = meta.isReadOnly || meta.isDisabled;
 
                 return (
                     React.createElement("label", {key: config.fieldID+'-'+idx}, 
@@ -30135,7 +30136,7 @@ module.exports = function ( React, tools ) {
                             className: "generated-radio-item", 
                             name: item.name, 
                             checked: isChecked, 
-                            readOnly: meta.isReadOnly, 
+                            readOnly: isReadOnly, 
                             onChange: handler, 
                             onKeyPress: self.handleKeyPress})
                     )
@@ -30202,7 +30203,7 @@ module.exports = function ( React, tools ) {
 
             return (
                 React.createElement("select", {id: config.fieldID, 
-                        readOnly: meta.isReadOnly, 
+                        disabled: meta.isDisabled, 
                         className: "generated-select-field", 
                         value: config.value, 
                         onChange: this.handleOnChange}, 
@@ -30290,7 +30291,7 @@ module.exports = function ( React, tools ) {
                     className: "generated-text-field", 
                     name: spec.name, 
                     value: config.value, 
-                    readOnly: meta.isReadOnly, 
+                    readOnly: meta.isReadOnly || meta.isDisabled, 
                     onChange: this.handleOnChange, 
                     onKeyPress: this.handleKeyPress})
             );
@@ -30358,7 +30359,7 @@ module.exports = function ( React, tools ) {
                     className: "generated-textarea-field", 
                     name: spec.name, 
                     value: config.value, 
-                    readOnly: meta.isReadOnly, 
+                    readOnly: meta.isReadOnly || meta.isDisabled, 
                     onChange: this.handleOnChange, 
                     onKeyPress: this.handleKeyPress})
             );

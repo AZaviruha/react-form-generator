@@ -25,7 +25,7 @@ module.exports = function ( React, tools ) {
         /* =========================================================== */
         handleOnChange: function ( e ) {
             var truthMap = getOrNull( this._spec(), 'truthMap' )
-              , checked  = e.target.checked
+              , checked  = e.target.checked ? 'true' : 'false'
               , value    = truthMap ? truthMap[ checked ] : checked;
 
             var res = { 
@@ -56,7 +56,7 @@ module.exports = function ( React, tools ) {
               , meta     = this._meta()
               , spec     = this._spec()
               , truthMap = getOrNull( spec, 'truthMap' )
-              , checked  = truthMap[ true ] === config.value;
+              , checked  = truthMap[ "true" ] === config.value;
 
             return (
                 React.createElement("input", {
@@ -65,7 +65,7 @@ module.exports = function ( React, tools ) {
                     className: "generated-checkbox-field", 
                     name: spec.name, 
                     checked: checked, 
-                    readOnly: meta.isReadOnly, 
+                    readOnly: meta.isReadOnly || meta.isDisabled, 
                     onChange: this.handleOnChange, 
                     onKeyPress: this.handleKeyPress})
             );

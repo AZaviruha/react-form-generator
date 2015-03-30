@@ -50,7 +50,7 @@ module.exports = function ( React, tools ) {
 
             return (
                 React.createElement("select", {id: config.fieldID, 
-                        readOnly: meta.isReadOnly, 
+                        disabled: meta.isDisabled, 
                         className: "generated-select-field", 
                         value: config.value, 
                         onChange: this.handleOnChange}, 

@@ -65,8 +65,9 @@ module.exports = function ( React, tools ) {
               , meta   = this._meta();
 
             return (items || []).map(function ( item, idx ) {
-                var value     = getOrNull( config, 'value' )
-                  , isChecked = item.id === value;
+                var value      = getOrNull( config, 'value' )
+                  , isChecked  = item.id === value
+                  , isReadOnly = meta.isReadOnly || meta.isDisabled;
 
                 return (
                     React.createElement("label", {key: config.fieldID+'-'+idx}, 
@@ -76,7 +77,7 @@ module.exports = function ( React, tools ) {
                             className: "generated-radio-item", 
                             name: item.name, 
                             checked: isChecked, 
-                            readOnly: meta.isReadOnly, 
+                            readOnly: isReadOnly, 
                             onChange: handler, 
                             onKeyPress: self.handleKeyPress})
                     )
