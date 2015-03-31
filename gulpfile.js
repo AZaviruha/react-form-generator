@@ -75,7 +75,7 @@ gulp.task( 'build-min-global', [ 'compile-components' ], function () {
 
 /**
  * To complie *.scss files into *css, run
- * ```gulp compile-scss```
+ * `gulp compile-scss`
  */
 gulp.task( 'compile-scss' , shell.task([
     path.normalize( './node_modules/.bin/node-sass ' ) + 
@@ -90,7 +90,7 @@ gulp.task( 'compile-scss' , shell.task([
 
 /**
  * To build "browserify" demo, execute
- * ```gulp build-demo```
+ * `gulp build-demo`
  */
 gulp.task( 'build-demo', 
            [ 'compile-components', 'compile-scss' ], function () {
@@ -104,7 +104,7 @@ gulp.task( 'build-demo',
 
 /**
  * To build "global script" demo, execute
- * ```gulp build-demo2```
+ * `gulp build-demo2`
  */
 gulp.task( 'copy-global-fg', [ 'build-min-global' ], function () {
     return gulp.src( 'dist/*.js' )
@@ -127,7 +127,7 @@ gulp.task( 'build-demo2',
 
 /**
  * To run demo, execute
- * ```gulp demo```
+ * `gulp demo`
  */
 gulp.task( 'demo' , [ 'build-demo' ], shell.task([
     'node ' + path.normalize( './app.js' )
@@ -176,8 +176,8 @@ gulp.task( 'test', testDeps, function ( done ) {
 
 gulp.task( 'watch', [ 'build-demo' ], function() {
     gulp.watch( './demo/client/scss/*.scss', [ 'compile-scss' ] );
-    gulp.watch( './src/components/primitives/*.jsx', [ 'compile-primitives' ] );
-    gulp.watch( './src/components/layouts/*.jsx', [ 'compile-layouts' ] );
-    gulp.watch( './src/components/*.jsx', [ 'compile-components' ] );
+    gulp.watch( './src/components/primitives/*.jsx', [ 'build-demo' ] );
+    gulp.watch( './src/components/layouts/*.jsx', [ 'build-demo' ] );
+    gulp.watch( './src/components/*.jsx', [ 'build-demo' ] );
     gulp.watch( './spec/**/*.js', [ 'test' ] );
 });

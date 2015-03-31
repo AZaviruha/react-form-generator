@@ -146,6 +146,7 @@ function merge ( obj1, obj2 ) {
 module.exports = {
     isDefined:     isDefined,
     isArray:       isArray,
+    isString:      isString,
     getOrDefault:  getOrDefault,
     getOrNull:     getOrNull,
     arrayToObject: arrayToObject,

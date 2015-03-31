@@ -151,8 +151,8 @@ module.exports={
             "defaultValue": "second",
             "rendererSpecific": {
                 "possibleValues": [
-                    { id: "first", text: "First option", name: "fst" },
-                    { id: "second", text: "Second option", name: "snd" }
+                    { "id": "first", "text": "First option", "name": "fst" },
+                    { "id": "second", "text": "Second option", "name": "snd" }
                 ]
             }
         },
@@ -162,9 +162,9 @@ module.exports={
             "defaultValue": "second",
             "rendererSpecific": {
                 "possibleValues": [
-                    { id: "first", text: "First option" },
-                    { id: "second", text: "Second option" },
-                    { id: "third", text: "Third option" }
+                    { "id": "first", "text": "First option" },
+                    { "id": "second", "text": "Second option" },
+                    { "id": "third", "text": "Third option" }
                 ]
             }
         },
@@ -30586,6 +30586,7 @@ function merge ( obj1, obj2 ) {
 module.exports = {
     isDefined:     isDefined,
     isArray:       isArray,
+    isString:      isString,
     getOrDefault:  getOrDefault,
     getOrNull:     getOrNull,
     arrayToObject: arrayToObject,
