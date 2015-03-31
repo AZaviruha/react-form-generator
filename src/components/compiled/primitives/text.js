@@ -58,7 +58,7 @@ module.exports = function ( React, tools ) {
                     className: "generated-text-field", 
                     name: spec.name, 
                     value: config.value, 
-                    readOnly: meta.isReadOnly, 
+                    readOnly: meta.isReadOnly || meta.isDisabled, 
                     onChange: this.handleOnChange, 
                     onKeyPress: this.handleKeyPress})
             );

@@ -1,4 +1,4 @@
-<h3>Simple form - a minimal working API</h3>
+<h2>Simple form - a minimal working API</h2>
 
 Let's start from building the simple form:
 <iframe width="100%" 

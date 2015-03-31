@@ -50,7 +50,7 @@ module.exports = function ( React, tools ) {
                 <button 
                     id={config.fieldID}
                     className={className}
-                    readOnly={meta.isReadOnly}
+                    disabled={meta.isDisabled}
                     onClick={this.handleClick}>{spec.text}</button>
             );
         }

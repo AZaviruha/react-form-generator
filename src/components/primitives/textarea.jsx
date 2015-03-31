@@ -57,7 +57,7 @@ module.exports = function ( React, tools ) {
                     className="generated-textarea-field"
                     name={spec.name}
                     value={config.value}
-                    readOnly={meta.isReadOnly}
+                    readOnly={meta.isReadOnly || meta.isDisabled}
                     onChange={this.handleOnChange}
                     onKeyPress={this.handleKeyPress}/>
             );

@@ -1,4 +1,4 @@
-<h3>Simple validation</h3>
+<h2>Simple validation</h2>
 
 Validation is one of the most frequently occurring task in a typical
 CRUD application. So in this section we will look how to add
