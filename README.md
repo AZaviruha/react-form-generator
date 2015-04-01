@@ -17,6 +17,8 @@ Features:
 ### Usage ###
 
 ```javascript
+var GeneratedForm = require( 'react-form-generator' )();
+
 <GeneratedForm meta={meta}
                value={this.state.value}
                errors={this.state.errors}

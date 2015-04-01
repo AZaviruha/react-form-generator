@@ -7,8 +7,6 @@ var $     = require( 'jquery' )
   , t     = FG.tools
   , meta  = require( './meta.json' );
 
-log.debug( 'meta :: ', meta );
-
 
 $(function () {
     var GeneratedForm = FG({})

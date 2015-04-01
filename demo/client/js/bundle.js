@@ -8,8 +8,6 @@ var $     = require( 'jquery' )
   , t     = FG.tools
   , meta  = require( './meta.json' );
 
-log.debug( 'meta :: ', meta );
-
 
 $(function () {
     var GeneratedForm = FG({})
@@ -30126,10 +30124,11 @@ module.exports = function ( React, tools ) {
             return (items || []).map(function ( item, idx ) {
                 var value      = getOrNull( config, 'value' )
                   , isChecked  = item.id === value
-                  , isReadOnly = meta.isReadOnly || meta.isDisabled;
+                  , isReadOnly = meta.isReadOnly || meta.isDisabled
+                  , key        = config.fieldID + '-' + idx;
 
                 return (
-                    React.createElement("label", {key: config.fieldID+'-'+idx}, 
+                    React.createElement("label", {key: key}, 
                         React.createElement("span", {className: "generated-radio-label"}, item.text), 
                         React.createElement("input", {
                             type: "radio", 

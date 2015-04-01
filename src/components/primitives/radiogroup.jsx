@@ -67,10 +67,11 @@ module.exports = function ( React, tools ) {
             return (items || []).map(function ( item, idx ) {
                 var value      = getOrNull( config, 'value' )
                   , isChecked  = item.id === value
-                  , isReadOnly = meta.isReadOnly || meta.isDisabled;
+                  , isReadOnly = meta.isReadOnly || meta.isDisabled
+                  , key        = config.fieldID + '-' + idx;
 
                 return (
-                    <label key={config.fieldID+'-'+idx}>
+                    <label key={key}>
                         <span className="generated-radio-label">{item.text}</span>
                         <input 
                             type="radio"

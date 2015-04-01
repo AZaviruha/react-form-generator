@@ -78,6 +78,75 @@ describe( 'tools/general.js', function () {
         });
     });
     
+
+    
+    describe( 'reduce', function () {
+        it( 'should return `acc` if `iterable` is not defined', function () {
+            var acc = 42
+              , f   = function () {};
+
+            expect( g.reduce( f, acc, null ) ).toBe( acc );
+            expect( g.reduce( f, acc, undefined ) ).toBe( acc );
+        });
+
+        it( 'should process array', function () {
+            var arr = [1, 2, 3]
+              , f   = function ( acc, val ) { return acc + val; };
+
+            expect( g.reduce( f, 0, arr ) ).toBe( 6 );
+        });
+
+        it( 'should process objects', function () {
+            var obj = { a: 1, b: 2, c: 3 }
+              , f   = function ( acc, val ) { return acc + val; };
+
+            expect( g.reduce( f, 0, obj ) ).toBe( 6 );
+        });
+    
+    });
+    
+
+
+    describe( 'argsToArray', function () {
+        it( 'should return empty array if function called without arguments', function () {
+            (function () {
+                expect( g.argsToArray( arguments ).length ).toBe( 0 );
+            })();
+        });
+        
+        
+        it( 'should return array with the same elements as in arguments', function () {
+            var f = function ( acc, val ) { return acc + val; };
+
+
+            (function ( a, b, c ) {
+                var sum = g.reduce( f, 0, g.argsToArray( arguments ) );
+                expect( sum ).toBe( a + b + c );
+            })( 1, 2, 3 );
+        });
+    });
+    
+
+    
+    describe( 'merge', function () {
+        it( 'should return first argument if second is not defined', function () {
+            var a = {};
+            expect( g.merge( a, null ) ).toBe( a );
+            expect( g.merge( a, undefined ) ).toBe( a );
+        });
+
+        it( 'should return second argument if first is not defined', function () {
+            var a = {};
+            expect( g.merge( null, a ) ).toBe( a );
+            expect( g.merge( undefined, a ) ).toBe( a );
+        });
+        
+        it( 'should return merged object if both arguments are defined', function () {
+            var a = { key1: 42 }
+              , b = { key2: 42 };
+            expect( g.merge( a, b ) ).toEqual({ key1: 42, key2: 42 });
+        });
+    });
 });
 
 function getKeys ( obj ) {
@@ -224,8 +293,8 @@ function merge ( obj1, obj2 ) {
     return res;
 
     function mergeTwo ( obj1, obj2 ) {
-        if ( undefined === obj1 ) return obj2;
-        if ( undefined === obj2 ) return obj1;
+        if ( !isDefined( obj1 ) ) return obj2;
+        if ( !isDefined( obj2 ) ) return obj1;
 
         for (var key in obj2) {
             obj1[ key ] = obj2[ key ];

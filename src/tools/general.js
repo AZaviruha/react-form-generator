@@ -132,8 +132,8 @@ function merge ( obj1, obj2 ) {
     return res;
 
     function mergeTwo ( obj1, obj2 ) {
-        if ( undefined === obj1 ) return obj2;
-        if ( undefined === obj2 ) return obj1;
+        if ( !isDefined( obj1 ) ) return obj2;
+        if ( !isDefined( obj2 ) ) return obj1;
 
         for (var key in obj2) {
             obj1[ key ] = obj2[ key ];

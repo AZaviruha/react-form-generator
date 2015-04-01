@@ -256,8 +256,8 @@ function merge ( obj1, obj2 ) {
     return res;
 
     function mergeTwo ( obj1, obj2 ) {
-        if ( undefined === obj1 ) return obj2;
-        if ( undefined === obj2 ) return obj1;
+        if ( !isDefined( obj1 ) ) return obj2;
+        if ( !isDefined( obj2 ) ) return obj1;
 
         for (var key in obj2) {
             obj1[ key ] = obj2[ key ];
@@ -282,6 +282,18 @@ module.exports = {
 },{}],3:[function(require,module,exports){
 var g = require( './general' );
 
+/**
+ * Builds a routing function, that matches
+ * event's name to the list of handlers
+ * and executes all of them.
+ *
+ * @param {string|RegExp} event1 - event's mask.
+ * @param [Function] handlers1   - handlers for event1.
+ * @param {string|RegExp} event2 - event's mask.
+ * @param [Function] handlers2   - handlers for event2.
+ * ...
+ * @returns {Function}
+ */
 function buildRouter () {
     var args       = g.argsToArray( arguments )
       , simpleConf = {}
