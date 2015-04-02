@@ -5,7 +5,10 @@ WARNING! This is work-in-progress!
 ```javascript
 {
     /**
-     * Logic model
+     * # Logical model
+     * This section contains information about form's logical model:
+     * set of fields, type of each field, some type-specific
+     * parameters, etc.
      */
     "fields": {
         "field1": {
@@ -41,7 +44,17 @@ WARNING! This is work-in-progress!
     },
 
     /**
-     * Layout model
+     * # Layout model
+     * This section describes form's presentation part.
+     * Layout is based on the grid system, and forms simple
+     * hierarchy:
+     *     grid > rows > cells > content
+     *
+     * It is also possible to form recursive hierarchy:
+     *     "content": [{ "renderer": "grid" }]
+     *
+     * Layout renders to nested divs, and you can set
+     * custom list of css classes for each level.
      */
     "layout": {
         "grid": {

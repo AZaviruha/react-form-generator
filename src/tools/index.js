@@ -1,5 +1,6 @@
 var g = require( './general' )
-  , s = require( './serializers' );
+  , s = require( './serializers' )
+  , r = require( './routing' );
 
 
 
@@ -13,5 +14,7 @@ module.exports = {
     reduce:        g.reduce,
     merge:         g.merge,
 
-    evalDefaults:  s.evalDefaults
+    evalDefaults:  s.evalDefaults,
+
+    buildRouter:   r.buildRouter
 };

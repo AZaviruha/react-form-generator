@@ -80,11 +80,9 @@ var App = React.createClass({
 ```
 
 As you can see, `onChange` callback already provide information about
-field's validity, so all we need is merge it into form's validity state.
-So this part of our example scenario is easy to solve.
+field's validity, so all we need is merge it into form's validity state. So this part of our example scenario is easy to solve.
 
-Now, what about second part - "when user clicks to the "Send" button, you
-want to show all validation errors"?
+Now, what about second part - "when user clicks to the "Send" button, you want to show all validation errors"?
 
 Because `button` primitive does not have concept of "change", like `text` or `textarea`, we can't process any button's events in `onChange` callback.
 
