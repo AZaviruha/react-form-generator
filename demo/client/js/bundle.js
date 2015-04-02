@@ -29821,7 +29821,7 @@ formGenerator.tools = t;
 
 module.exports = formGenerator;
 
-},{"../../tools":176,"../../validation":178,"./layouts/label":163,"./layouts/simpleFormField":164,"./layouts/unwrapped":165,"./primitives/button":166,"./primitives/checkbox":167,"./primitives/radiogroup":168,"./primitives/select":169,"./primitives/text":170,"./primitives/textarea":171,"react":161}],163:[function(require,module,exports){
+},{"../../tools":176,"../../validation":179,"./layouts/label":163,"./layouts/simpleFormField":164,"./layouts/unwrapped":165,"./primitives/button":166,"./primitives/checkbox":167,"./primitives/radiogroup":168,"./primitives/select":169,"./primitives/text":170,"./primitives/textarea":171,"react":161}],163:[function(require,module,exports){
 var mixins = require( './../../../mixins' );
 
 module.exports = function ( React, tools ) {
@@ -30458,9 +30458,11 @@ function isArray ( x ) {
     return '[object Array]' === Object.prototype.toString.call( x );
 }
 
+
 function isString ( x ) {
     return 'string' === typeof x;
 }
+
 
 /**
  * Returns path's value or null if path's chain has undefined member.
@@ -30572,8 +30574,8 @@ function merge ( obj1, obj2 ) {
     return res;
 
     function mergeTwo ( obj1, obj2 ) {
-        if ( undefined === obj1 ) return obj2;
-        if ( undefined === obj2 ) return obj1;
+        if ( !isDefined( obj1 ) ) return obj2;
+        if ( !isDefined( obj2 ) ) return obj1;
 
         for (var key in obj2) {
             obj1[ key ] = obj2[ key ];
@@ -30582,6 +30584,7 @@ function merge ( obj1, obj2 ) {
         return obj1;
     }
 }
+
 
 module.exports = {
     isDefined:     isDefined,
@@ -30597,7 +30600,8 @@ module.exports = {
 
 },{}],176:[function(require,module,exports){
 var g = require( './general' )
-  , s = require( './serializers' );
+  , s = require( './serializers' )
+  , r = require( './routing' );
 
 
 
@@ -30611,10 +30615,85 @@ module.exports = {
     reduce:        g.reduce,
     merge:         g.merge,
 
-    evalDefaults:  s.evalDefaults
+    evalDefaults:  s.evalDefaults,
+
+    buildRouter:   r.buildRouter
 };
 
-},{"./general":175,"./serializers":177}],177:[function(require,module,exports){
+},{"./general":175,"./routing":177,"./serializers":178}],177:[function(require,module,exports){
+var g = require( './general' );
+
+/**
+ * Builds a routing function, that matches
+ * event's name to the list of handlers
+ * and executes all of them.
+ *
+ * @param {string|RegExp} event1 - event's mask.
+ * @param [Function] handlers1   - handlers for event1.
+ * @param {string|RegExp} event2 - event's mask.
+ * @param [Function] handlers2   - handlers for event2.
+ * ...
+ * @returns {Function}
+ */
+function buildRouter () {
+    var args       = g.argsToArray( arguments )
+      , simpleConf = {}
+      , regexpConf = []
+      , reLength
+      , i, len, route, handlers;
+    
+    if ( (args.length === 0) || (args.length % 2 !== 0) )
+        throw new Error( 'Wrong number of arguments!' );
+        
+    for ( i = 0, len = args.length; i < len; i+=2 ) {
+        route    = args[ i ];
+        handlers = args[ i + 1 ];
+        
+        if ( route instanceof RegExp ) 
+            regexpConf.push([ route, handlers ]);
+        else
+            simpleConf[ route ] = handlers;
+    }
+
+    reLength = regexpConf.length;
+
+    /**
+     * Search path in `simpleConf` and `regexpConf`
+     * and runs all handlers of mathed path.
+     * @param {String} path  - path to route.
+     */
+    return function route ( path ) {
+        var values = g.argsToArray( arguments ).slice( 1 )
+          , checkedPath, handlers
+          , i, len;
+        
+        /** Checks simple routes first. */
+        handlers = simpleConf[ path ];
+
+        /** Checks regexp routes last. */
+        if ( !g.getOrNull( handlers, 'length' ) ) 
+            for ( i = 0; i < reLength; i++ ) {
+                checkedPath = regexpConf[ i ][ 0 ];
+                if ( checkedPath.test(path) ) {
+                    handlers = regexpConf[ i ][ 1 ];
+                    break;
+                }
+            }
+        
+        /** Run each handler of matched route. */
+        if ( handlers && handlers.length ) 
+            for ( i = 0, len = handlers.length; i < len; i++ ) {
+                handlers[ i ].apply( this, values );
+            }
+    };
+}
+
+
+module.exports = {
+    buildRouter: buildRouter
+};
+
+},{"./general":175}],178:[function(require,module,exports){
 var g = require( './general' );
 
 /**
@@ -30640,7 +30719,7 @@ module.exports = {
     evalDefaults: evalDefaults
 };
 
-},{"./general":175}],178:[function(require,module,exports){
+},{"./general":175}],179:[function(require,module,exports){
 var t          = require( '../tools' )
   , reduce     = t.reduce
   , getOrNull  = t.getOrNull;
@@ -30797,7 +30876,7 @@ module.exports = function ( conf ) {
     };
 };
 
-},{"../tools":176,"./validators":179}],179:[function(require,module,exports){
+},{"../tools":176,"./validators":180}],180:[function(require,module,exports){
 var t            = require( '../tools' )
   , getOrNull    = t.getOrNull
   , getOrDefault = t.getOrDefault;

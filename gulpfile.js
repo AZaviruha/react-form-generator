@@ -70,21 +70,6 @@ gulp.task( 'build-min-global', [ 'compile-components' ], function () {
 
 
 // ===========================================================//
-// ======================== Styles ===========================//
-// ===========================================================//
-
-/**
- * To complie *.scss files into *css, run
- * `gulp compile-scss`
- */
-gulp.task( 'compile-scss' , shell.task([
-    path.normalize( './node_modules/.bin/node-sass ' ) + 
-    path.normalize( 'demo/client/scss/main.scss ' ) + 
-    path.normalize( 'demo/client/css/main.css' )
-]));
-
-
-// ===========================================================//
 // ======================== Demo =============================//
 // ===========================================================//
 
@@ -92,8 +77,7 @@ gulp.task( 'compile-scss' , shell.task([
  * To build "browserify" demo, execute
  * `gulp build-demo`
  */
-gulp.task( 'build-demo', 
-           [ 'compile-components', 'compile-scss' ], function () {
+gulp.task( 'build-demo', [ 'compile-components' ], function () {
     return gulp.src( 'demo/client/js/main.js' )
                .pipe( react() )
                .pipe( browserify() )
@@ -116,7 +100,7 @@ gulp.task( 'copy-global-react', function () {
 });
 gulp.task( 'build-demo2', 
            [ 'copy-global-react', 'copy-global-fg', 
-             'compile-components', 'compile-scss' ], function () {
+             'compile-components' ], function () {
     return gulp.src( 'demo/client/js/main2.js' )
                .pipe( react() )
                .pipe( browserify() )
@@ -175,7 +159,6 @@ gulp.task( 'test', testDeps, function ( done ) {
 // ===========================================================//
 
 gulp.task( 'watch', [ 'build-demo' ], function() {
-    gulp.watch( './demo/client/scss/*.scss', [ 'compile-scss' ] );
     gulp.watch( './src/components/primitives/*.jsx', [ 'build-demo' ] );
     gulp.watch( './src/components/layouts/*.jsx', [ 'build-demo' ] );
     gulp.watch( './src/components/*.jsx', [ 'build-demo' ] );
