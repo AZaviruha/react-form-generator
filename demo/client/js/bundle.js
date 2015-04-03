@@ -29899,26 +29899,15 @@ module.exports = function ( React, tools ) {
 };
 
 },{"./../../../mixins":172}],165:[function(require,module,exports){
-var mixins = require( './../../../mixins' );
-
 module.exports = function ( React, tools ) {
-    var getOrNull      = tools.getOrNull
-      , getOrDefault   = tools.getOrDefault;
-
     return React.createClass({
-        mixins: [ mixins.LayoutAccessors ],
-
-        /* =========================================================== */
-        /* ======================== Renders ========================== */
-        /* =========================================================== */
-
         render : function () {
             return this.props.children;
         }
     });
 };
 
-},{"./../../../mixins":172}],166:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 var cls    = require( 'classnames' )
   , mixins = require( './../../../mixins' );
 
