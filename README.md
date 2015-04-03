@@ -1,5 +1,5 @@
 # State-less form generator #
-[![Docs][docs-image]][docs-url]
+[![Docs][docs-image]][docs-url] <br />
 [![NPM version][npm-stats]][npm-url]
 
 ### Summary ###
