@@ -1,24 +1,24 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var r = require( '../../src/tools/routing' );
 
-describe( "tools/routing.js", function () {
-    describe( "buildRouter", function () {
-        it( "should throw exception, if called without arguments", function () {
+describe( 'tools/routing.js', function () {
+    describe( 'buildRouter', function () {
+        it( 'should throw exception, if called without arguments', function () {
             var f = function () { r.buildRouter(); };
             expect( f ).toThrow();
         });
 
-        it( "should throw exception, if called with odd number of arguments", function () {
+        it( 'should throw exception, if called with odd number of arguments', function () {
             var f = function () { r.buildRouter( 1, 2, 3 ); };
             expect( f ).toThrow();
         });
 
-        it( "should return function", function () {
+        it( 'should return function', function () {
             expect( r.buildRouter( 1, 2 ) ).not.toThrow();
         });
         
 
-        it( "should call handlers for simple string route", function () {
+        it( 'should call handlers for simple string route', function () {
             var handlers = {
                 f1: function () {},
                 f2: function () {},
@@ -46,7 +46,7 @@ describe( "tools/routing.js", function () {
         });
         
 
-        it( "should call handlers for regexp route", function () {
+        it( 'should call handlers for regexp route', function () {
             var handlers = {
                 f1: function () {},
                 f2: function () {}
@@ -70,7 +70,7 @@ describe( "tools/routing.js", function () {
         });
         
 
-        it( "should call handlers with specified arguments", function () {
+        it( 'should call handlers with specified arguments', function () {
             var handlers = {
                 f1: function () {},
                 f2: function () {}
@@ -92,7 +92,7 @@ describe( "tools/routing.js", function () {
         });
         
 
-        it( "should call all handlers of matched route", function () {
+        it( 'should call all handlers of matched route', function () {
             var handlers = {
                 f1: function () {},
                 f2: function () {},
@@ -142,9 +142,11 @@ function isArray ( x ) {
     return '[object Array]' === Object.prototype.toString.call( x );
 }
 
+
 function isString ( x ) {
     return 'string' === typeof x;
 }
+
 
 /**
  * Returns path's value or null if path's chain has undefined member.
@@ -266,6 +268,7 @@ function merge ( obj1, obj2 ) {
         return obj1;
     }
 }
+
 
 module.exports = {
     isDefined:     isDefined,

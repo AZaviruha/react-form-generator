@@ -179,9 +179,11 @@ function isArray ( x ) {
     return '[object Array]' === Object.prototype.toString.call( x );
 }
 
+
 function isString ( x ) {
     return 'string' === typeof x;
 }
+
 
 /**
  * Returns path's value or null if path's chain has undefined member.
@@ -303,6 +305,7 @@ function merge ( obj1, obj2 ) {
         return obj1;
     }
 }
+
 
 module.exports = {
     isDefined:     isDefined,

@@ -1,0 +1,43 @@
+{
+    "fields": {
+        "field1": {
+            "renderer": "text",
+            "defaultValue": "test read-only value",
+            "isDisabled": true
+        },
+        "field2": {
+            "renderer": "checkbox",
+            "isDisabled": false,
+            "defaultValue": 1,
+            "rendererSpecific": {
+                "truthMap": {
+                    "true":  1,
+                    "false": 0
+                }
+            }
+        }, 
+        "field3": {
+            "renderer": "radiogroup",
+            "isDisabled": false,
+            "defaultValue": "second",
+            "rendererSpecific": {
+                "possibleValues": [
+                    { "id": "first", "text": "First option", "name": "fst" },
+                    { "id": "second", "text": "Second option", "name": "snd" }
+                ]
+            }
+        },
+        "field4": {
+            "renderer": "select",
+            "isDisabled": false,
+            "defaultValue": "third",
+            "rendererSpecific": {
+                "possibleValues": [
+                    { "id": "first", "text": "First option" },
+                    { "id": "second", "text": "Second option" },
+                    { "id": "third", "text": "Third option" }
+                ]
+            }
+        }
+    }
+}

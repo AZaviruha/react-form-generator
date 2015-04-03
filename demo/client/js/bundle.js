@@ -30919,7 +30919,7 @@ module.exports = {
     },
 
     'numbers': function ( conf, value ) {
-        return (new RegExp( '^\\d+$' )).test( value );
+        return (new RegExp( '^\\d*$' )).test( value );
     }
 };
 

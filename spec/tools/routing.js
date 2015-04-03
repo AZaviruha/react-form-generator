@@ -1,23 +1,23 @@
 var r = require( '../../src/tools/routing' );
 
-describe( "tools/routing.js", function () {
-    describe( "buildRouter", function () {
-        it( "should throw exception, if called without arguments", function () {
+describe( 'tools/routing.js', function () {
+    describe( 'buildRouter', function () {
+        it( 'should throw exception, if called without arguments', function () {
             var f = function () { r.buildRouter(); };
             expect( f ).toThrow();
         });
 
-        it( "should throw exception, if called with odd number of arguments", function () {
+        it( 'should throw exception, if called with odd number of arguments', function () {
             var f = function () { r.buildRouter( 1, 2, 3 ); };
             expect( f ).toThrow();
         });
 
-        it( "should return function", function () {
+        it( 'should return function', function () {
             expect( r.buildRouter( 1, 2 ) ).not.toThrow();
         });
         
 
-        it( "should call handlers for simple string route", function () {
+        it( 'should call handlers for simple string route', function () {
             var handlers = {
                 f1: function () {},
                 f2: function () {},
@@ -45,7 +45,7 @@ describe( "tools/routing.js", function () {
         });
         
 
-        it( "should call handlers for regexp route", function () {
+        it( 'should call handlers for regexp route', function () {
             var handlers = {
                 f1: function () {},
                 f2: function () {}
@@ -69,7 +69,7 @@ describe( "tools/routing.js", function () {
         });
         
 
-        it( "should call handlers with specified arguments", function () {
+        it( 'should call handlers with specified arguments', function () {
             var handlers = {
                 f1: function () {},
                 f2: function () {}
@@ -91,7 +91,7 @@ describe( "tools/routing.js", function () {
         });
         
 
-        it( "should call all handlers of matched route", function () {
+        it( 'should call all handlers of matched route', function () {
             var handlers = {
                 f1: function () {},
                 f2: function () {},
