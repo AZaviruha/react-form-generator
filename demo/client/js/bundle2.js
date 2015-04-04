@@ -66,7 +66,7 @@ module.exports={
         "field1": {
             "renderer": "text",
             "defaultValue": "test read-only value",
-            "isReadOnly": true
+            "isDisabled": true
         },
         "field2": {
             "renderer": "text"
@@ -114,7 +114,7 @@ module.exports={
         }, 
         "field6": {
             "renderer": "textarea",
-            "isReadOnly": true
+            "isDisabled": true
         },
         "field7": {
             "renderer": "textarea",
@@ -134,35 +134,35 @@ module.exports={
         }, 
         "field8": {
             "renderer": "checkbox",
-            "isReadOnly": false,
+            "isDisabled": false,
             "defaultValue": 1,
             "rendererSpecific": {
                 "truthMap": {
-                    true:  1,
-                    false: 0
+                    "true":  1,
+                    "false": 0
                 }
             }
         }, 
         "field9": {
             "renderer": "radiogroup",
-            "isReadOnly": false,
+            "isDisabled": false,
             "defaultValue": "second",
             "rendererSpecific": {
                 "possibleValues": [
-                    { id: "first", text: "First option", name: "fst" },
-                    { id: "second", text: "Second option", name: "snd" }
+                    { "id": "first", "text": "First option", "name": "fst" },
+                    { "id": "second", "text": "Second option", "name": "snd" }
                 ]
             }
         },
         "field10": {
             "renderer": "select",
-            "isReadOnly": false,
+            "isDisabled": false,
             "defaultValue": "second",
             "rendererSpecific": {
                 "possibleValues": [
-                    { id: "first", text: "First option" },
-                    { id: "second", text: "Second option" },
-                    { id: "third", text: "Third option" }
+                    { "id": "first", "text": "First option" },
+                    { "id": "second", "text": "Second option" },
+                    { "id": "third", "text": "Third option" }
                 ]
             }
         },
