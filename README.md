@@ -1,5 +1,6 @@
 # State-less form generator #
 [![Docs][docs-image]][docs-url] <br />
+[![Code Climate][cclimate]](https://codeclimate.com/github/AZaviruha/react-form-generator)
 [![NPM version][npm-stats]][npm-url]
 
 ### Summary ###
@@ -59,3 +60,4 @@ Distributed under the MIT License (see LICENSE file).
 [npm-image]: http://img.shields.io/badge/npm-v0.1.1-green.svg
 [npm-url]: https://www.npmjs.org/package/react-form-generator
 [npm-stats]: https://nodei.co/npm/react-form-generator.png?downloads=true
+[cclimate]: [https://codeclimate.com/github/AZaviruha/react-form-generator/badges/gpa.svg]

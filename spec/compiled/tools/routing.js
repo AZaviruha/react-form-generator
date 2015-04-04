@@ -130,7 +130,7 @@ describe( 'tools/routing.js', function () {
  */
 function isDefined ( x ) {
     return ( x !== null ) && ( x !== undefined );
-};
+}
 
 
 /**
@@ -173,12 +173,12 @@ function getOrDefault ( source, path, defaultVal ) {
     }
 
     return source;
-};
+}
 
 
 function getOrNull ( source, path ) {
     return getOrDefault( source, path, null );
-};
+}
 
 
 
@@ -233,7 +233,7 @@ function reduce ( f, acc, iterable ) {
 
 
 var slice = Array.prototype.slice;
-function argsToArray ( args ) { return slice.apply( args ); };
+function argsToArray ( args ) { return slice.apply( args ); }
 
 
 /**
