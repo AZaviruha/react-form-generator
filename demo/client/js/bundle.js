@@ -211,6 +211,18 @@ module.exports={
                 "cells": [{
                     "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
                     "content": [{
+                        "renderer": "header",
+                        "rendererSpecific": {
+                            "size": 2,
+                            "text": "react-form-generator demo:"
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
+                    "content": [{
                         "renderer": "default",
                         "rendererSpecific": {
                             "fieldID": "field1",
@@ -247,8 +259,9 @@ module.exports={
                 "cells": [{
                     "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
                     "content": [{
-                        "renderer": "label",
+                        "renderer": "header",
                         "rendererSpecific": {
+                            "size": 3,
                             "text": "Validation examples"
                         }
                     }]
@@ -334,8 +347,9 @@ module.exports={
                 "cells": [{
                     "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
                     "content": [{
-                        "renderer": "label",
+                        "renderer": "header",
                         "rendererSpecific": {
+                            "size": 3,
                             "text": "Nested grid example"
                         }
                     }]
@@ -360,8 +374,8 @@ module.exports={
                                             "css": {
                                                 "wrapper": "row",
                                                 "inner": "",
-                                                "label": "col-xs-12 col-sm-12 col-md-3",
-                                                "field": "col-xs-12 col-sm-12 col-md-9",
+                                                "label": "col-xs-12 col-sm-12 col-md-4",
+                                                "field": "col-xs-12 col-sm-12 col-md-8",
                                                 "errors": "col-xs-12 col-sm-12 col-md-offset-3 col-md-9"
                                             }
                                         }
@@ -376,8 +390,8 @@ module.exports={
                                             "css": {
                                                 "wrapper": "row",
                                                 "inner": "",
-                                                "label": "col-xs-12 col-sm-12 col-md-3",
-                                                "field": "col-xs-12 col-sm-12 col-md-9",
+                                                "label": "col-xs-12 col-sm-12 col-md-4",
+                                                "field": "col-xs-12 col-sm-12 col-md-8",
                                                 "errors": "col-xs-12 col-sm-12 col-md-offset-3 col-md-9"
                                             }
                                         }
@@ -29596,7 +29610,8 @@ function formGenerator ( conf ) {
     var LAYOUTS = merge({
         default:    require( './layouts/simpleFormField' )( R, t ),
         unwrapped:  require( './layouts/unwrapped' )( R, t ),
-        label:      require( './layouts/label' )( R, t )
+        label:      require( './layouts/label' )( R, t ),
+        header:     require( './layouts/header' )( R, t )
     }, getOrDefault( conf, 'mixins.layoutRenderers', {} ));
 
 
@@ -29864,13 +29879,47 @@ formGenerator.tools = t;
 
 module.exports = formGenerator;
 
-},{"../../tools":176,"../../validation":179,"./layouts/label":163,"./layouts/simpleFormField":164,"./layouts/unwrapped":165,"./primitives/button":166,"./primitives/checkbox":167,"./primitives/radiogroup":168,"./primitives/select":169,"./primitives/text":170,"./primitives/textarea":171,"react":161}],163:[function(require,module,exports){
+},{"../../tools":177,"../../validation":180,"./layouts/header":163,"./layouts/label":164,"./layouts/simpleFormField":165,"./layouts/unwrapped":166,"./primitives/button":167,"./primitives/checkbox":168,"./primitives/radiogroup":169,"./primitives/select":170,"./primitives/text":171,"./primitives/textarea":172,"react":161}],163:[function(require,module,exports){
 var mixins = require( './../../../mixins' );
 
 module.exports = function ( React, tools ) {
-    var getOrNull      = tools.getOrNull
-      , getOrDefault   = tools.getOrDefault;
+    return React.createClass({
+        mixins: [ mixins.LayoutAccessors ],
 
+        getHeader: function ( size, text ) {
+            return {
+                1: (React.createElement("h1", null, text)),
+                2: (React.createElement("h2", null, text)),
+                3: (React.createElement("h3", null, text)),
+                4: (React.createElement("h4", null, text)),
+                5: (React.createElement("h5", null, text)),
+                6: (React.createElement("h6", null, text))
+            }[ size ];
+        },
+
+        /* =========================================================== */
+        /* ======================== Renders ========================== */
+        /* =========================================================== */
+
+        render : function () {
+            var css       = this._css()
+              , fieldConf = this._field()
+              , spec      = this._spec();
+
+            return (
+                React.createElement("div", {className: css.wrapper, key: this.props.key}, 
+                    this.getHeader( spec.size, spec.text)
+                )
+            );
+        }
+    });
+};
+
+
+},{"./../../../mixins":173}],164:[function(require,module,exports){
+var mixins = require( './../../../mixins' );
+
+module.exports = function ( React, tools ) {
     return React.createClass({
         mixins: [ mixins.LayoutAccessors ],
 
@@ -29891,7 +29940,7 @@ module.exports = function ( React, tools ) {
     });
 };
 
-},{"./../../../mixins":172}],164:[function(require,module,exports){
+},{"./../../../mixins":173}],165:[function(require,module,exports){
 var mixins = require( './../../../mixins' );
 
 module.exports = function ( React, tools ) {
@@ -29941,7 +29990,7 @@ module.exports = function ( React, tools ) {
     });
 };
 
-},{"./../../../mixins":172}],165:[function(require,module,exports){
+},{"./../../../mixins":173}],166:[function(require,module,exports){
 module.exports = function ( React, tools ) {
     return React.createClass({
         render : function () {
@@ -29950,7 +29999,7 @@ module.exports = function ( React, tools ) {
     });
 };
 
-},{}],166:[function(require,module,exports){
+},{}],167:[function(require,module,exports){
 var cls    = require( 'classnames' )
   , mixins = require( './../../../mixins' );
 
@@ -30010,7 +30059,7 @@ module.exports = function ( React, tools ) {
     });
 };
 
-},{"./../../../mixins":172,"classnames":3}],167:[function(require,module,exports){
+},{"./../../../mixins":173,"classnames":3}],168:[function(require,module,exports){
 var mixins = require( './../../../mixins' );
 
 module.exports = function ( React, tools ) {
@@ -30086,7 +30135,7 @@ module.exports = function ( React, tools ) {
     });
 };
 
-},{"./../../../mixins":172}],168:[function(require,module,exports){
+},{"./../../../mixins":173}],169:[function(require,module,exports){
 var mixins = require( './../../../mixins' );
 
 module.exports = function ( React, tools ) {
@@ -30181,7 +30230,7 @@ module.exports = function ( React, tools ) {
     });
 };
 
-},{"./../../../mixins":172}],169:[function(require,module,exports){
+},{"./../../../mixins":173}],170:[function(require,module,exports){
 var mixins = require( './../../../mixins' );
 
 module.exports = function ( React, tools ) {
@@ -30262,7 +30311,7 @@ module.exports = function ( React, tools ) {
     });
 };
 
-},{"./../../../mixins":172}],170:[function(require,module,exports){
+},{"./../../../mixins":173}],171:[function(require,module,exports){
 var mixins = require( './../../../mixins' );
 
 module.exports = function ( React, tools ) {
@@ -30331,7 +30380,7 @@ module.exports = function ( React, tools ) {
     });
 };
 
-},{"./../../../mixins":172}],171:[function(require,module,exports){
+},{"./../../../mixins":173}],172:[function(require,module,exports){
 var mixins = require( './../../../mixins' );
 
 module.exports = function ( React, tools ) {
@@ -30399,7 +30448,7 @@ module.exports = function ( React, tools ) {
     });
 };
 
-},{"./../../../mixins":172}],172:[function(require,module,exports){
+},{"./../../../mixins":173}],173:[function(require,module,exports){
 var l = require( './layouts' )
   , p = require( './primitives' );
 
@@ -30409,7 +30458,7 @@ module.exports = {
     PrimitiveAccessors: p.PrimitiveAccessors
 };
 
-},{"./layouts":173,"./primitives":174}],173:[function(require,module,exports){
+},{"./layouts":174,"./primitives":175}],174:[function(require,module,exports){
 var tools          = require( './../tools' )
   , getOrNull      = tools.getOrNull
   , getOrDefault   = tools.getOrDefault;
@@ -30440,7 +30489,7 @@ module.exports = {
     LayoutAccessors: LayoutAccessors
 };
 
-},{"./../tools":176}],174:[function(require,module,exports){
+},{"./../tools":177}],175:[function(require,module,exports){
 var tools          = require( './../tools' )
   , getOrNull      = tools.getOrNull
   , getOrDefault   = tools.getOrDefault;
@@ -30470,7 +30519,7 @@ module.exports = {
     PrimitiveAccessors: PrimitiveAccessors
 };
 
-},{"./../tools":176}],175:[function(require,module,exports){
+},{"./../tools":177}],176:[function(require,module,exports){
 
 /**
  * Checks that `x` is not `null` or `undefined`.
@@ -30631,7 +30680,7 @@ module.exports = {
     argsToArray:   argsToArray
 };
 
-},{}],176:[function(require,module,exports){
+},{}],177:[function(require,module,exports){
 var g = require( './general' )
   , s = require( './serializers' )
   , r = require( './routing' );
@@ -30653,7 +30702,7 @@ module.exports = {
     buildRouter:   r.buildRouter
 };
 
-},{"./general":175,"./routing":177,"./serializers":178}],177:[function(require,module,exports){
+},{"./general":176,"./routing":178,"./serializers":179}],178:[function(require,module,exports){
 var g = require( './general' );
 
 /**
@@ -30726,7 +30775,7 @@ module.exports = {
     buildRouter: buildRouter
 };
 
-},{"./general":175}],178:[function(require,module,exports){
+},{"./general":176}],179:[function(require,module,exports){
 var g = require( './general' );
 
 /**
@@ -30752,7 +30801,7 @@ module.exports = {
     evalDefaults: evalDefaults
 };
 
-},{"./general":175}],179:[function(require,module,exports){
+},{"./general":176}],180:[function(require,module,exports){
 var t          = require( '../tools' )
   , reduce     = t.reduce
   , getOrNull  = t.getOrNull;
@@ -30799,26 +30848,8 @@ module.exports = function ( conf ) {
      * @return {Object}
      */
     function checkByRule ( ruleInfo, value, fieldMeta ) {
-        var rule = ruleInfo.rule;
-
-        // var complex = {
-        //     'or': function () {
-        //         var validators = ruleInfo.value;
-        //         return reduce(function ( acc, v ) {
-        //             var f = VALIDATORS[ v.rule ];
-        //             return acc || f( v, value, fieldMeta );
-        //         }, false, validators ); 
-        //     },
-        //     'and': function () {
-        //         var validators = ruleInfo.value;
-        //         return reduce(function ( acc, v ) {
-        //             var f = VALIDATORS[ v.rule ];
-        //             return acc && f( v, value, fieldMeta );
-        //         }, true, validators ); 
-        //     }
-        // };
-
-        var isValid = VALIDATORS[ rule ];
+        var rule    = ruleInfo.rule
+          , isValid = VALIDATORS[ rule ];
         return isValid( ruleInfo, value, fieldMeta ) ? null : ruleInfo;
     }
 
@@ -30927,7 +30958,7 @@ module.exports = function ( conf ) {
     };
 };
 
-},{"../tools":176,"./validators":180}],180:[function(require,module,exports){
+},{"../tools":177,"./validators":181}],181:[function(require,module,exports){
 var t            = require( '../tools' )
   , getOrNull    = t.getOrNull
   , getOrDefault = t.getOrDefault;
@@ -30978,4 +31009,4 @@ module.exports = {
     }
 };
 
-},{"../tools":176}]},{},[1])
+},{"../tools":177}]},{},[1])

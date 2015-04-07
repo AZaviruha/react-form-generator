@@ -211,6 +211,18 @@ module.exports={
                 "cells": [{
                     "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
                     "content": [{
+                        "renderer": "header",
+                        "rendererSpecific": {
+                            "size": 2,
+                            "text": "react-form-generator demo:"
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
+                    "content": [{
                         "renderer": "default",
                         "rendererSpecific": {
                             "fieldID": "field1",
@@ -247,8 +259,9 @@ module.exports={
                 "cells": [{
                     "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
                     "content": [{
-                        "renderer": "label",
+                        "renderer": "header",
                         "rendererSpecific": {
+                            "size": 3,
                             "text": "Validation examples"
                         }
                     }]
@@ -334,8 +347,9 @@ module.exports={
                 "cells": [{
                     "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
                     "content": [{
-                        "renderer": "label",
+                        "renderer": "header",
                         "rendererSpecific": {
+                            "size": 3,
                             "text": "Nested grid example"
                         }
                     }]
@@ -360,8 +374,8 @@ module.exports={
                                             "css": {
                                                 "wrapper": "row",
                                                 "inner": "",
-                                                "label": "col-xs-12 col-sm-12 col-md-3",
-                                                "field": "col-xs-12 col-sm-12 col-md-9",
+                                                "label": "col-xs-12 col-sm-12 col-md-4",
+                                                "field": "col-xs-12 col-sm-12 col-md-8",
                                                 "errors": "col-xs-12 col-sm-12 col-md-offset-3 col-md-9"
                                             }
                                         }
@@ -376,8 +390,8 @@ module.exports={
                                             "css": {
                                                 "wrapper": "row",
                                                 "inner": "",
-                                                "label": "col-xs-12 col-sm-12 col-md-3",
-                                                "field": "col-xs-12 col-sm-12 col-md-9",
+                                                "label": "col-xs-12 col-sm-12 col-md-4",
+                                                "field": "col-xs-12 col-sm-12 col-md-8",
                                                 "errors": "col-xs-12 col-sm-12 col-md-offset-3 col-md-9"
                                             }
                                         }

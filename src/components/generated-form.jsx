@@ -40,7 +40,8 @@ function formGenerator ( conf ) {
     var LAYOUTS = merge({
         default:    require( './layouts/simpleFormField' )( R, t ),
         unwrapped:  require( './layouts/unwrapped' )( R, t ),
-        label:      require( './layouts/label' )( R, t )
+        label:      require( './layouts/label' )( R, t ),
+        header:     require( './layouts/header' )( R, t )
     }, getOrDefault( conf, 'mixins.layoutRenderers', {} ));
 
 
