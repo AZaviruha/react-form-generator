@@ -11,6 +11,10 @@ WARNING! This is work-in-progress!
      * parameters, etc.
      */
     "fields": {
+
+        /**
+         * "text" renderer example.
+         */
         "field1": {
             /**
              * All properties at this level are common for all
@@ -39,6 +43,33 @@ WARNING! This is work-in-progress!
              * specific for different types of renderers.
              */
             "rendererSpecific": {}
+        }, 
+
+        /**
+         * "textarea" renderer example.
+         */
+        "field2": {
+            "renderer":     "textarea",
+            "defaultValue": "some default value",
+            "isHidden":     false,
+            "isDisabled":   false,
+            "validators":   [
+                {
+                    "rule": "required",
+                    "message": "Field is required"
+                },
+                {
+                    "rule": "maxLength",
+                    "value": 5,
+                    "message": "Maximum length of field is 5 characters"
+                },
+                ...
+            ],
+
+            "rendererSpecific": {
+                "cols": 42,
+                "rows": 7
+            }
         }, 
         ...
     },

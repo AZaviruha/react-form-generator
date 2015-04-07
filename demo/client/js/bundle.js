@@ -138,10 +138,18 @@ module.exports={
         }, 
         "field6": {
             "renderer": "textarea",
-            "isDisabled": true
+            "isDisabled": true,
+            "rendererSpecific": {
+                "cols": 50,
+                "rows": 5
+            }
         },
         "field7": {
             "renderer": "textarea",
+            "rendererSpecific": {
+                "cols": 50,
+                "rows": 5
+            },
             "validators": [
                 {
                     "rule": "and",
@@ -30439,6 +30447,8 @@ module.exports = function ( React, tools ) {
                     id: config.fieldID, 
                     className: "generated-textarea-field", 
                     name: spec.name, 
+                    cols: spec.cols, 
+                    rows: spec.rows, 
                     value: config.value, 
                     readOnly: meta.isReadOnly || meta.isDisabled, 
                     onChange: this.handleOnChange, 
