@@ -71,7 +71,7 @@ module.exports={
         "field2": {
             "renderer": "text"
         },
-        "field3": {
+        "validation-field-1": {
             "renderer": "text",
             "validators": [
                 {
@@ -85,7 +85,7 @@ module.exports={
                 }
             ]
         }, 
-        "field4": {
+        "validation-field-2": {
             "renderer": "text",
             "validators": [
                 {
@@ -96,7 +96,7 @@ module.exports={
                 }
             ]
         }, 
-        "field5": {
+        "validation-field-3": {
             "renderer": "text",
             "validators": [
                 {
@@ -111,6 +111,30 @@ module.exports={
                     "message": "Field's length should be between 3 and 5"
                 }
             ]
+        }, 
+        "validation-field-4": {
+            "renderer": "text",
+            "validators": [{
+                "rule": "or",
+                "value": [{
+                    "rule": "and",
+                    "value": [{
+                        "rule": "alphabetics"
+                    }, {
+                        "rule": "length",
+                        "value": 3
+                    }]
+                }, {
+                    "rule": "and",
+                    "value": [{
+                        "rule": "numbers"
+                    }, {
+                        "rule": "length",
+                        "value": 9
+                    }]
+                }],
+                "message": "Only 3-characters CODE or 9-characters ID allowed"
+            }]
         }, 
         "field6": {
             "renderer": "textarea",
@@ -236,8 +260,8 @@ module.exports={
                     "content": [{
                         "renderer": "default",
                         "rendererSpecific": {
-                            "fieldID": "field3",
-                            "label": "Field #3 (simple validation):",
+                            "fieldID": "validation-field-1",
+                            "label": "Simple validation:",
                             "css": {
                                 "wrapper": "row",
                                 "inner": "",
@@ -255,8 +279,8 @@ module.exports={
                     "content": [{
                         "renderer": "default",
                         "rendererSpecific": {
-                            "fieldID": "field4",
-                            "label": "Field #4 (\"or\" validator):",
+                            "fieldID": "validation-field-2",
+                            "label": "\"or\" validator:",
                             "css": {
                                 "wrapper": "row",
                                 "inner": "",
@@ -274,8 +298,27 @@ module.exports={
                     "content": [{
                         "renderer": "default",
                         "rendererSpecific": {
-                            "fieldID": "field5",
-                            "label": "Field #5 (\"and\" validator):",
+                            "fieldID": "validation-field-3",
+                            "label": "\"and\" validator:",
+                            "css": {
+                                "wrapper": "row",
+                                "inner": "",
+                                "label": "col-xs-12 col-sm-12 col-md-2",
+                                "field": "col-xs-12 col-sm-12 col-md-10",
+                                "errors": "col-xs-12 col-sm-12 col-md-offset-2 col-md-10"
+                            }
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
+                    "content": [{
+                        "renderer": "default",
+                        "rendererSpecific": {
+                            "fieldID": "validation-field-4",
+                            "label": "\"or\" and \"and\" together:",
                             "css": {
                                 "wrapper": "row",
                                 "inner": "",

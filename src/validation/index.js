@@ -15,6 +15,24 @@ module.exports = function ( conf ) {
     var VALIDATORS = t.merge( require( './validators' ), 
                               conf.validators );
 
+
+    VALIDATORS[ 'or' ] = function ( conf, value, fieldMeta ) {
+        var validators = conf.value;
+        return reduce(function ( acc, v ) {
+            var f = VALIDATORS[ v.rule ];
+            return acc || f( v, value, fieldMeta );
+        }, false, validators ); 
+    };
+    
+    VALIDATORS[ 'and' ] = function ( conf, value, fieldMeta ) {
+        var validators = conf.value;
+        return reduce(function ( acc, v ) {
+            var f = VALIDATORS[ v.rule ];
+            return acc && f( v, value, fieldMeta );
+        }, true, validators ); 
+    };
+
+
     /**
      * Validates field's value against of validation rule.
      * Returs sublist of validateion rules that was not sutisfied 
@@ -26,26 +44,8 @@ module.exports = function ( conf ) {
      * @return {Object}
      */
     function checkByRule ( ruleInfo, value, fieldMeta ) {
-        var rule = ruleInfo.rule;
-
-        var complex = {
-            'or': function () {
-                var validators = ruleInfo.value;
-                return reduce(function ( acc, v ) {
-                    var f = VALIDATORS[ v.rule ];
-                    return acc || f( v, value, fieldMeta );
-                }, false, validators ); 
-            },
-            'and': function () {
-                var validators = ruleInfo.value;
-                return reduce(function ( acc, v ) {
-                    var f = VALIDATORS[ v.rule ];
-                    return acc && f( v, value, fieldMeta );
-                }, true, validators ); 
-            }
-        };
-
-        var isValid = complex[ rule ] || VALIDATORS[ rule ];
+        var rule    = ruleInfo.rule
+          , isValid = VALIDATORS[ rule ];
         return isValid( ruleInfo, value, fieldMeta ) ? null : ruleInfo;
     }
 

@@ -71,7 +71,7 @@ module.exports={
         "field2": {
             "renderer": "text"
         },
-        "field3": {
+        "validation-field-1": {
             "renderer": "text",
             "validators": [
                 {
@@ -85,7 +85,7 @@ module.exports={
                 }
             ]
         }, 
-        "field4": {
+        "validation-field-2": {
             "renderer": "text",
             "validators": [
                 {
@@ -96,7 +96,7 @@ module.exports={
                 }
             ]
         }, 
-        "field5": {
+        "validation-field-3": {
             "renderer": "text",
             "validators": [
                 {
@@ -111,6 +111,30 @@ module.exports={
                     "message": "Field's length should be between 3 and 5"
                 }
             ]
+        }, 
+        "validation-field-4": {
+            "renderer": "text",
+            "validators": [{
+                "rule": "or",
+                "value": [{
+                    "rule": "and",
+                    "value": [{
+                        "rule": "alphabetics"
+                    }, {
+                        "rule": "length",
+                        "value": 3
+                    }]
+                }, {
+                    "rule": "and",
+                    "value": [{
+                        "rule": "numbers"
+                    }, {
+                        "rule": "length",
+                        "value": 9
+                    }]
+                }],
+                "message": "Only 3-characters CODE or 9-characters ID allowed"
+            }]
         }, 
         "field6": {
             "renderer": "textarea",
@@ -236,8 +260,8 @@ module.exports={
                     "content": [{
                         "renderer": "default",
                         "rendererSpecific": {
-                            "fieldID": "field3",
-                            "label": "Field #3 (simple validation):",
+                            "fieldID": "validation-field-1",
+                            "label": "Simple validation:",
                             "css": {
                                 "wrapper": "row",
                                 "inner": "",
@@ -255,8 +279,8 @@ module.exports={
                     "content": [{
                         "renderer": "default",
                         "rendererSpecific": {
-                            "fieldID": "field4",
-                            "label": "Field #4 (\"or\" validator):",
+                            "fieldID": "validation-field-2",
+                            "label": "\"or\" validator:",
                             "css": {
                                 "wrapper": "row",
                                 "inner": "",
@@ -274,8 +298,27 @@ module.exports={
                     "content": [{
                         "renderer": "default",
                         "rendererSpecific": {
-                            "fieldID": "field5",
-                            "label": "Field #5 (\"and\" validator):",
+                            "fieldID": "validation-field-3",
+                            "label": "\"and\" validator:",
+                            "css": {
+                                "wrapper": "row",
+                                "inner": "",
+                                "label": "col-xs-12 col-sm-12 col-md-2",
+                                "field": "col-xs-12 col-sm-12 col-md-10",
+                                "errors": "col-xs-12 col-sm-12 col-md-offset-2 col-md-10"
+                            }
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
+                    "content": [{
+                        "renderer": "default",
+                        "rendererSpecific": {
+                            "fieldID": "validation-field-4",
+                            "label": "\"or\" and \"and\" together:",
                             "css": {
                                 "wrapper": "row",
                                 "inner": "",
@@ -30206,9 +30249,10 @@ module.exports = function ( React, tools ) {
               , meta   = this._meta();
 
             return (items || []).map(function ( item, idx ) {
+                var key = config.fieldID + '-' + idx;
                 return (
                     React.createElement("option", {
-                        key: config.fieldID+'-'+idx, 
+                        key: key, 
                         className: "generated-select-item", 
                         value: item.id
                         }, item.text)
@@ -30435,7 +30479,7 @@ module.exports = {
  */
 function isDefined ( x ) {
     return ( x !== null ) && ( x !== undefined );
-};
+}
 
 
 /**
@@ -30478,12 +30522,12 @@ function getOrDefault ( source, path, defaultVal ) {
     }
 
     return source;
-};
+}
 
 
 function getOrNull ( source, path ) {
     return getOrDefault( source, path, null );
-};
+}
 
 
 
@@ -30523,7 +30567,7 @@ function reduceObject ( f, acc, obj ) {
             val = obj[ key ];
             acc = f( acc, val, key ); 
         }
-    };
+    }
     return acc;
 }
 
@@ -30538,7 +30582,7 @@ function reduce ( f, acc, iterable ) {
 
 
 var slice = Array.prototype.slice;
-function argsToArray ( args ) { return slice.apply( args ); };
+function argsToArray ( args ) { return slice.apply( args ); }
 
 
 /**
@@ -30726,6 +30770,24 @@ module.exports = function ( conf ) {
     var VALIDATORS = t.merge( require( './validators' ), 
                               conf.validators );
 
+
+    VALIDATORS[ 'or' ] = function ( conf, value, fieldMeta ) {
+        var validators = conf.value;
+        return reduce(function ( acc, v ) {
+            var f = VALIDATORS[ v.rule ];
+            return acc || f( v, value, fieldMeta );
+        }, false, validators ); 
+    };
+    
+    VALIDATORS[ 'and' ] = function ( conf, value, fieldMeta ) {
+        var validators = conf.value;
+        return reduce(function ( acc, v ) {
+            var f = VALIDATORS[ v.rule ];
+            return acc && f( v, value, fieldMeta );
+        }, true, validators ); 
+    };
+
+
     /**
      * Validates field's value against of validation rule.
      * Returs sublist of validateion rules that was not sutisfied 
@@ -30739,24 +30801,24 @@ module.exports = function ( conf ) {
     function checkByRule ( ruleInfo, value, fieldMeta ) {
         var rule = ruleInfo.rule;
 
-        var complex = {
-            'or': function () {
-                var validators = ruleInfo.value;
-                return reduce(function ( acc, v ) {
-                    var f = VALIDATORS[ v.rule ];
-                    return acc || f( v, value, fieldMeta );
-                }, false, validators ); 
-            },
-            'and': function () {
-                var validators = ruleInfo.value;
-                return reduce(function ( acc, v ) {
-                    var f = VALIDATORS[ v.rule ];
-                    return acc && f( v, value, fieldMeta );
-                }, true, validators ); 
-            }
-        };
+        // var complex = {
+        //     'or': function () {
+        //         var validators = ruleInfo.value;
+        //         return reduce(function ( acc, v ) {
+        //             var f = VALIDATORS[ v.rule ];
+        //             return acc || f( v, value, fieldMeta );
+        //         }, false, validators ); 
+        //     },
+        //     'and': function () {
+        //         var validators = ruleInfo.value;
+        //         return reduce(function ( acc, v ) {
+        //             var f = VALIDATORS[ v.rule ];
+        //             return acc && f( v, value, fieldMeta );
+        //         }, true, validators ); 
+        //     }
+        // };
 
-        var isValid = complex[ rule ] || VALIDATORS[ rule ];
+        var isValid = VALIDATORS[ rule ];
         return isValid( ruleInfo, value, fieldMeta ) ? null : ruleInfo;
     }
 
@@ -30908,7 +30970,11 @@ module.exports = {
     },
 
     'numbers': function ( conf, value ) {
-        return (new RegExp( '^\\d*$' )).test( value );
+        return /^\d*$/.test( value );
+    },
+
+    'alphabetics': function ( conf, value ) {
+        return /^[A-z]*$/.test( value );
     }
 };
 

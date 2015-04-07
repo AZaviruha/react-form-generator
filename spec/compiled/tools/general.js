@@ -255,7 +255,7 @@ function reduceObject ( f, acc, obj ) {
             val = obj[ key ];
             acc = f( acc, val, key ); 
         }
-    };
+    }
     return acc;
 }
 

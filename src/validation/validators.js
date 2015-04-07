@@ -40,6 +40,10 @@ module.exports = {
     },
 
     'numbers': function ( conf, value ) {
-        return (new RegExp( '^\\d*$' )).test( value );
+        return /^\d*$/.test( value );
+    },
+
+    'alphabetics': function ( conf, value ) {
+        return /^[A-z]*$/.test( value );
     }
 };

@@ -65,9 +65,10 @@ module.exports = function ( React, tools ) {
               , meta   = this._meta();
 
             return (items || []).map(function ( item, idx ) {
+                var key = config.fieldID + '-' + idx;
                 return (
                     React.createElement("option", {
-                        key: config.fieldID+'-'+idx, 
+                        key: key, 
                         className: "generated-select-item", 
                         value: item.id
                         }, item.text)
