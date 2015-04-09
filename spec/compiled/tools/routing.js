@@ -270,6 +270,10 @@ function merge ( obj1, obj2 ) {
 }
 
 
+function and ( a, b ) { return a && b; }
+function or ( a, b ) { return a || b; }
+
+
 module.exports = {
     isDefined:     isDefined,
     isArray:       isArray,
@@ -279,7 +283,9 @@ module.exports = {
     arrayToObject: arrayToObject,
     reduce:        reduce,
     merge:         merge,
-    argsToArray:   argsToArray
+    argsToArray:   argsToArray,
+    and:           and,
+    or:            or
 };
 
 },{}],3:[function(require,module,exports){

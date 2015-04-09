@@ -146,22 +146,15 @@ function formGenerator ( conf ) {
         },
         
         
-        componentDidMount: function () {
-        },
-
-        componentDidUpdate: function ( prevProps ) {
-        },
-
-
         /* =========================================================== */
         /* ========================= Helpers ========================= */
         /* =========================================================== */
 
-        getFieldValue: function ( fieldID, fieldMeta ) {
+        getFieldValue: function ( fieldID ) {
             return  getOrNull( this.props.value, fieldID );
         },
 
-        getFieldErrors: function ( fieldID, fieldMeta ) {
+        getFieldErrors: function ( fieldID ) {
             var errors = getOrDefault( this, 'props.errors', {} );
             return getOrNull( errors, fieldID );
         },
@@ -245,23 +238,21 @@ function formGenerator ( conf ) {
             return contents.map(function ( cnt, idx ) {
                 var cntSpec   = getOrDefault( cnt, 'rendererSpecific' )
                   , fldID     = cntSpec.fieldID
-                  , fldCSS    = cntSpec.css
-                  , fldMeta   = getOrNull( meta.fields, fldID )
-                  , fldValue  = self.getFieldValue( fldID, fldMeta )
-                  , fldErrors = self.getFieldErrors( fldID, fldMeta );
+                  , fldMeta   = getOrNull( meta.fields, fldID );
 
                 var config = {
                     fieldID:   fldID,
                     meta:      fldMeta,
-                    css:       fldCSS,
-                    value:     fldValue,
-                    errors:    fldErrors,
+                    css:       cntSpec.css,
+                    value:     self.getFieldValue( fldID ),
+                    errors:    self.getFieldErrors( fldID ),
                     onChange:  self.handleFieldChanged,
                     onEvent:   self.handleFieldEvent
                 };
                 
                 var renderer = getOrNull(cnt, 'renderer')
                   , key      = 'generated-field-' + idx;
+
                 if ( 'field' === renderer ) 
                     return (
                         <GeneratedField key={key} config={config} />
