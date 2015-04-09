@@ -138,10 +138,18 @@ module.exports={
         }, 
         "field6": {
             "renderer": "textarea",
-            "isDisabled": true
+            "isDisabled": true,
+            "rendererSpecific": {
+                "cols": 50,
+                "rows": 5
+            }
         },
         "field7": {
             "renderer": "textarea",
+            "rendererSpecific": {
+                "cols": 50,
+                "rows": 5
+            },
             "validators": [
                 {
                     "rule": "and",

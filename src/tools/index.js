@@ -13,6 +13,8 @@ module.exports = {
     arrayToObject: g.arrayToObject,
     reduce:        g.reduce,
     merge:         g.merge,
+    or:            g.or,
+    and:           g.and,
 
     evalDefaults:  s.evalDefaults,
 

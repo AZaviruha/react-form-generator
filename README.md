@@ -1,6 +1,6 @@
 # State-less form generator #
 [![Docs][docs-image]][docs-url]
-[![Code Climate][cclimate-image]][cclimate-image] <br />
+[![Code Climate][cclimate-image]][cclimate-url] <br />
 [![NPM version][npm-stats]][npm-url]
 
 ### Summary ###

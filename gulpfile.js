@@ -162,5 +162,7 @@ gulp.task( 'watch', [ 'build-demo' ], function() {
     gulp.watch( './src/components/primitives/*.jsx', [ 'build-demo' ] );
     gulp.watch( './src/components/layouts/*.jsx', [ 'build-demo' ] );
     gulp.watch( './src/components/*.jsx', [ 'build-demo' ] );
+    gulp.watch( './src/validation/*.js', [ 'build-demo' ] );
+    gulp.watch( './src/tools/*.js', [ 'build-demo' ] );
     gulp.watch( './spec/**/*.js', [ 'test' ] );
 });

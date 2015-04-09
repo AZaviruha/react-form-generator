@@ -16,21 +16,29 @@ module.exports = function ( conf ) {
                               conf.validators );
 
 
-    VALIDATORS[ 'or' ] = function ( conf, value, fieldMeta ) {
-        var validators = conf.value;
-        return reduce(function ( acc, v ) {
-            var f = VALIDATORS[ v.rule ];
-            return acc || f( v, value, fieldMeta );
-        }, false, validators ); 
-    };
+    VALIDATORS.or  = composite( t.or, false );
+    VALIDATORS.and = composite( t.and, true );
     
-    VALIDATORS[ 'and' ] = function ( conf, value, fieldMeta ) {
-        var validators = conf.value;
-        return reduce(function ( acc, v ) {
-            var f = VALIDATORS[ v.rule ];
-            return acc && f( v, value, fieldMeta );
-        }, true, validators ); 
-    };
+    /**
+     * Build composite validator, which 
+     * combines result of all nested validators 
+     * by `comb` function.
+     *
+     * @param {Function} comp - `and`, `or`, etc.
+     * @param {Object} zero - intital value of composite
+     *                        validator result. 
+     * @returns {Function)
+     */
+    function composite ( comb, zero ) {
+        return function ( conf, value, fieldMeta ) {
+            var validators = conf.value;
+            return reduce(function ( acc, v ) {
+                var f = VALIDATORS[ v.rule ];
+                checkRuleExistence( f, v.rule );
+                return comb( acc, f( v, value, fieldMeta ) );
+            }, zero, validators ); 
+        };
+    }
 
 
     /**
@@ -41,14 +49,21 @@ module.exports = function ( conf ) {
      * @param {Object} value - value to validate.
      * @param {Object} fieldMeta - for some validation rules 
      * field meta is required.
-     * @return {Object}
+     * @returns {Object}
      */
     function checkByRule ( ruleInfo, value, fieldMeta ) {
         var rule    = ruleInfo.rule
           , isValid = VALIDATORS[ rule ];
+
+        checkRuleExistence( isValid, rule );
         return isValid( ruleInfo, value, fieldMeta ) ? null : ruleInfo;
     }
 
+    
+    function checkRuleExistence ( validate, rule ) {
+        if ( !validate ) 
+            throw new Error( 'Valdiation rule does not exist: ' + rule );
+    }
 
     /**
      * Validates field's value against list of validation rules.
@@ -56,7 +71,7 @@ module.exports = function ( conf ) {
      * by value.
      * @param {Object[]} rules - list of validation rules.
      * @param {Object} value - value to validate.
-     * @return {Object[]}
+     * @returns {Object[]}
      */
     function checkByAll ( rules, value, fieldMeta ) {
         return (rules || [])
@@ -86,7 +101,7 @@ module.exports = function ( conf ) {
      * Calculates validity of the array of fields.
      * @param {Object[]} fldsMeta - array of metadata.
      * @param {Object[]} fldsValue - map with fields value.
-     * @return {Object} - { 
+     * @returns {Object} - { 
      *     %fieldID%: [ %failed_validators% ],
      *     ...
      * }
@@ -106,7 +121,7 @@ module.exports = function ( conf ) {
      * before validation.
      * @param {Object} formMeta - metadata in GeneratedForm format.
      * @param {Object} formValue - data in GeneratedForm format.
-     * @return {Object} - { 
+     * @returns {Object} - { 
      *     %fieldID%: [ %failed_validators% ],
      *     ...
      * }
@@ -138,7 +153,7 @@ module.exports = function ( conf ) {
      *     %fieldID%: [ %failed_validators% ],
      *     ...
      * }
-     * @return {Boolean}
+     * @returns {Boolean}
      */
     function isFormValid ( formErrors ) {
         if ( !_.isPlainObject(formErrors) ) return true;
