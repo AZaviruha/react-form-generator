@@ -40,9 +40,11 @@ $(function () {
         
 
         handleFormEvent: function ( fieldID, eventName, eventInfo ) {
+            log.debug( '------------------------------------------' );
             log.debug( 'handleFormEvent :: fieldID :: ', fieldID );
             log.debug( 'handleFormEvent :: eventName :: ', eventName );
-            log.debug( 'handleFormEvent :: eventInfo :: ', eventInfo );
+            // log.debug( 'handleFormEvent :: eventInfo :: ', eventInfo );
+            log.debug( '------------------------------------------' );
         },
 
 
@@ -30011,17 +30013,7 @@ module.exports = function ( React, tools ) {
             return { config: {} };
         },
 
-        /* =========================================================== */
-        /* ======================== Handlers ========================= */
-        /* =========================================================== */
-        handleClick: function ( e ) {
-            this.handleEvent( 'click', e );
-        },
-
-        handleEvent: function ( eventName, e ) {
-            var fieldID = this._conf().fieldID;
-            this._conf().onEvent( fieldID, eventName, e );
-        },
+        handleEvent: mixins.handleEvent,
 
         /* =========================================================== */
         /* ======================== Renders ========================== */
@@ -30043,7 +30035,8 @@ module.exports = function ( React, tools ) {
                     className: className, 
                     disabled: meta.isDisabled, 
                     onBlur: this.handleEvent( 'blur'), 
-                    onClick: this.handleClick}, spec.text)
+                    onFocus: this.handleEvent( 'focus'), 
+                    onClick: this.handleEvent( 'click')}, spec.text)
             );
         }
     });
@@ -30087,18 +30080,11 @@ module.exports = function ( React, tools ) {
             };
 
             res.value[ res.id ] = value;
-            this.handleEvent( 'change', e );
+            this.handleEvent( 'change' )( e );
             this._conf().onChange( res );
         },
         
-        handleKeyPress: function ( e ) {
-            this.handleEvent( 'keypress', e );
-        },
-
-        handleEvent: function ( eventName, e ) {
-            var fieldID = this._conf().fieldID;
-            this._conf().onEvent( fieldID, eventName, e );
-        },
+        handleEvent: mixins.handleEvent,
 
         /* =========================================================== */
         /* ======================== Renders ========================== */
@@ -30120,7 +30106,8 @@ module.exports = function ( React, tools ) {
                     readOnly: meta.isReadOnly || meta.isDisabled, 
                     onChange: this.handleOnChange, 
                     onBlur: this.handleEvent( 'blur'), 
-                    onKeyPress: this.handleKeyPress})
+                    onFocus: this.handleEvent( 'focus'), 
+                    onKeyPress: this.handleEvent( 'keypress')})
             );
         }
     });
@@ -30160,18 +30147,11 @@ module.exports = function ( React, tools ) {
             };
 
             res.value[ res.id ] = item.id;
-            this.handleEvent( 'change', e );
+            this.handleEvent( 'change')( e );
             this._conf().onChange( res );
         },
-        
-        handleKeyPress: function ( e ) {
-            this.handleEvent( 'keypress', e );
-        },
 
-        handleEvent: function ( eventName, e ) {
-            var fieldID = this._conf().fieldID;
-            this._conf().onEvent( fieldID, eventName, e );
-        },
+        handleEvent: mixins.handleEvent,
 
         /* =========================================================== */
         /* ======================== Renders ========================== */
@@ -30210,7 +30190,8 @@ module.exports = function ( React, tools ) {
                             readOnly: isReadOnly, 
                             onChange: handler, 
                             onBlur: self.handleEvent( 'blur'), 
-                            onKeyPress: self.handleKeyPress})
+                            onFocus: self.handleEvent( 'focus'), 
+                            onKeyPress: self.handleEvent( 'keypress')})
                     )
                 );
                 
@@ -30256,14 +30237,11 @@ module.exports = function ( React, tools ) {
             };
 
             res.value[ res.id ] = e.target.value; 
-            this.handleEvent( 'change', e );
+            this.handleEvent( 'change' )( e );
             this._conf().onChange( res );
         },
-        
-        handleEvent: function ( eventName, e ) {
-            var fieldID = this._conf().fieldID;
-            this._conf().onEvent( fieldID, eventName, e );
-        },
+
+        handleEvent: mixins.handleEvent,
 
         /* =========================================================== */
         /* ======================== Renders ========================== */
@@ -30279,6 +30257,7 @@ module.exports = function ( React, tools ) {
                         className: "generated-select-field", 
                         value: config.value, 
                         onBlur: this.handleEvent( 'blur'), 
+                        onFocus: this.handleEvent( 'focus'), 
                         onChange: this.handleOnChange}, 
                     this.renderItems( spec.possibleValues)
                 )
@@ -30341,6 +30320,7 @@ module.exports = function ( React, tools ) {
             this._conf().onChange( res );
         },
         
+        handleEvent: mixins.handleEvent,
 
         /* =========================================================== */
         /* ======================== Renders ========================== */
@@ -30360,6 +30340,7 @@ module.exports = function ( React, tools ) {
                     readOnly: meta.isReadOnly || meta.isDisabled, 
                     onChange: this.handleOnChange, 
                     onBlur: this.handleEvent( 'blur'), 
+                    onFocus: this.handleEvent( 'focus'), 
                     onKeyPress: this.handleEvent( 'keypress')})
             );
         }
@@ -30399,18 +30380,11 @@ module.exports = function ( React, tools ) {
             };
 
             res.value[ res.id ] = e.target.value;
-            this.handleEvent( 'change', e );
+            this.handleEvent( 'change' )( e );
             this._conf().onChange( res );
         },
 
-        handleKeyPress: function ( e ) {
-            this.handleEvent( 'keypress', e );
-        },
-
-        handleEvent: function ( eventName, e ) {
-            var fieldID = this._conf().fieldID;
-            this._conf().onEvent( fieldID, eventName, e );
-        },
+        handleEvent: mixins.handleEvent,
 
         /* =========================================================== */
         /* ======================== Renders ========================== */
@@ -30431,7 +30405,8 @@ module.exports = function ( React, tools ) {
                     readOnly: meta.isReadOnly || meta.isDisabled, 
                     onChange: this.handleOnChange, 
                     onBlur: this.handleEvent( 'blur'), 
-                    onKeyPress: this.handleKeyPress})
+                    onFocus: this.handleEvent( 'focus'), 
+                    onKeyPress: this.handleEvent( 'keypress')})
             );
         }
     });
@@ -30444,7 +30419,8 @@ var l = require( './layouts' )
 
 module.exports = {
     LayoutAccessors:    l.LayoutAccessors,
-    PrimitiveAccessors: p.PrimitiveAccessors
+    PrimitiveAccessors: p.PrimitiveAccessors,
+    handleEvent:    p.handleEvent
 };
 
 },{"./layouts":174,"./primitives":175}],174:[function(require,module,exports){
@@ -30500,24 +30476,22 @@ var PrimitiveAccessors = {
         this._spec = function () {
             return getOrDefault( this._meta(), 'rendererSpecific', {} );
         };
-        
-        
-        /**
-         * Default event handler.
-         */
-        this.handleEvent = function ( eventName ) {
-            var self = this;
-            return function ( e ) {
-                var fieldID = self._conf().fieldID;
-                self._conf().onEvent( fieldID, eventName, e );
-            };
-        };
     }
 };
 
 
+function handleEvent ( eventName ) {
+    var self = this;
+    return function ( e ) {
+        var fieldID = self._conf().fieldID;
+        self._conf().onEvent( fieldID, eventName, e );
+    };
+};
+
+
 module.exports = {
-    PrimitiveAccessors: PrimitiveAccessors
+    PrimitiveAccessors: PrimitiveAccessors,
+    handleEvent:    handleEvent
 };
 
 },{"./../tools":177}],176:[function(require,module,exports){

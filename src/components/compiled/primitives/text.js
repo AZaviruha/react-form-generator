@@ -34,6 +34,7 @@ module.exports = function ( React, tools ) {
             this._conf().onChange( res );
         },
         
+        handleEvent: mixins.handleEvent,
 
         /* =========================================================== */
         /* ======================== Renders ========================== */
@@ -53,6 +54,7 @@ module.exports = function ( React, tools ) {
                     readOnly: meta.isReadOnly || meta.isDisabled, 
                     onChange: this.handleOnChange, 
                     onBlur: this.handleEvent( 'blur'), 
+                    onFocus: this.handleEvent( 'focus'), 
                     onKeyPress: this.handleEvent( 'keypress')})
             );
         }

@@ -19,22 +19,20 @@ var PrimitiveAccessors = {
         this._spec = function () {
             return getOrDefault( this._meta(), 'rendererSpecific', {} );
         };
-        
-        
-        /**
-         * Default event handler.
-         */
-        this.handleEvent = function ( eventName ) {
-            var self = this;
-            return function ( e ) {
-                var fieldID = self._conf().fieldID;
-                self._conf().onEvent( fieldID, eventName, e );
-            };
-        };
     }
 };
 
 
+function handleEvent ( eventName ) {
+    var self = this;
+    return function ( e ) {
+        var fieldID = self._conf().fieldID;
+        self._conf().onEvent( fieldID, eventName, e );
+    };
+};
+
+
 module.exports = {
-    PrimitiveAccessors: PrimitiveAccessors
+    PrimitiveAccessors: PrimitiveAccessors,
+    handleEvent:    handleEvent
 };

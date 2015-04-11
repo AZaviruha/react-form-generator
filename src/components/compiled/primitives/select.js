@@ -31,14 +31,11 @@ module.exports = function ( React, tools ) {
             };
 
             res.value[ res.id ] = e.target.value; 
-            this.handleEvent( 'change', e );
+            this.handleEvent( 'change' )( e );
             this._conf().onChange( res );
         },
-        
-        handleEvent: function ( eventName, e ) {
-            var fieldID = this._conf().fieldID;
-            this._conf().onEvent( fieldID, eventName, e );
-        },
+
+        handleEvent: mixins.handleEvent,
 
         /* =========================================================== */
         /* ======================== Renders ========================== */
@@ -54,6 +51,7 @@ module.exports = function ( React, tools ) {
                         className: "generated-select-field", 
                         value: config.value, 
                         onBlur: this.handleEvent( 'blur'), 
+                        onFocus: this.handleEvent( 'focus'), 
                         onChange: this.handleOnChange}, 
                     this.renderItems( spec.possibleValues)
                 )

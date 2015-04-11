@@ -30,18 +30,11 @@ module.exports = function ( React, tools ) {
             };
 
             res.value[ res.id ] = e.target.value;
-            this.handleEvent( 'change', e );
+            this.handleEvent( 'change' )( e );
             this._conf().onChange( res );
         },
 
-        handleKeyPress: function ( e ) {
-            this.handleEvent( 'keypress', e );
-        },
-
-        handleEvent: function ( eventName, e ) {
-            var fieldID = this._conf().fieldID;
-            this._conf().onEvent( fieldID, eventName, e );
-        },
+        handleEvent: mixins.handleEvent,
 
         /* =========================================================== */
         /* ======================== Renders ========================== */
@@ -62,7 +55,8 @@ module.exports = function ( React, tools ) {
                     readOnly={meta.isReadOnly || meta.isDisabled}
                     onChange={this.handleOnChange}
                     onBlur={this.handleEvent( 'blur' )}
-                    onKeyPress={this.handleKeyPress}/>
+                    onFocus={this.handleEvent( 'focus' )}
+                    onKeyPress={this.handleEvent( 'keypress' )}/>
             );
         }
     });

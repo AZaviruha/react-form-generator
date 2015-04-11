@@ -39,9 +39,11 @@ $(function () {
         
 
         handleFormEvent: function ( fieldID, eventName, eventInfo ) {
+            log.debug( '------------------------------------------' );
             log.debug( 'handleFormEvent :: fieldID :: ', fieldID );
             log.debug( 'handleFormEvent :: eventName :: ', eventName );
-            log.debug( 'handleFormEvent :: eventInfo :: ', eventInfo );
+            // log.debug( 'handleFormEvent :: eventInfo :: ', eventInfo );
+            log.debug( '------------------------------------------' );
         },
 
 

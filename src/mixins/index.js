@@ -4,5 +4,6 @@ var l = require( './layouts' )
 
 module.exports = {
     LayoutAccessors:    l.LayoutAccessors,
-    PrimitiveAccessors: p.PrimitiveAccessors
+    PrimitiveAccessors: p.PrimitiveAccessors,
+    handleEvent:    p.handleEvent
 };

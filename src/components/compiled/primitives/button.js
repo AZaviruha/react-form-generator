@@ -20,17 +20,7 @@ module.exports = function ( React, tools ) {
             return { config: {} };
         },
 
-        /* =========================================================== */
-        /* ======================== Handlers ========================= */
-        /* =========================================================== */
-        handleClick: function ( e ) {
-            this.handleEvent( 'click', e );
-        },
-
-        handleEvent: function ( eventName, e ) {
-            var fieldID = this._conf().fieldID;
-            this._conf().onEvent( fieldID, eventName, e );
-        },
+        handleEvent: mixins.handleEvent,
 
         /* =========================================================== */
         /* ======================== Renders ========================== */
@@ -52,7 +42,8 @@ module.exports = function ( React, tools ) {
                     className: className, 
                     disabled: meta.isDisabled, 
                     onBlur: this.handleEvent( 'blur'), 
-                    onClick: this.handleClick}, spec.text)
+                    onFocus: this.handleEvent( 'focus'), 
+                    onClick: this.handleEvent( 'click')}, spec.text)
             );
         }
     });
