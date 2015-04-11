@@ -43,8 +43,7 @@ The last command compiles demo and runs simple *express* server.
 ### TODO ###
 * Add documentation (in progress).
 * Add unit-tests (in progress).
-* Add full metadata formar description (in progress).
-* Add metadata expanders.
+* Add full metadata format description (in progress).
 * Add complete CRUD example.
 
 
