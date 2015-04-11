@@ -65,7 +65,7 @@ module.exports={
     "fields": {
         "field1": {
             "renderer": "text",
-            "defaultValue": "test read-only value",
+            "defaultValue": "default value for text field",
             "isDisabled": true
         },
         "field2": {
@@ -139,6 +139,7 @@ module.exports={
         "field6": {
             "renderer": "textarea",
             "isDisabled": true,
+            "defaultValue": "default value for textarea field",
             "rendererSpecific": {
                 "cols": 50,
                 "rows": 5
@@ -198,13 +199,13 @@ module.exports={
                 ]
             }
         },
-        "field11": {
+        "btnSave": {
             "renderer": "button",
             "rendererSpecific": {
                 "text": "Save"
             }
         },
-        "field12": {
+        "btnClear": {
             "renderer": "button",
             "rendererSpecific": {
                 "text": "Clear"
@@ -378,7 +379,7 @@ module.exports={
                                         "renderer": "default",
                                         "rendererSpecific": {
                                             "fieldID": "field6",
-                                            "label": "Field #6:",
+                                            "label": "Disabled textarea:",
                                             "css": {
                                                 "wrapper": "row",
                                                 "inner": "",
@@ -394,7 +395,7 @@ module.exports={
                                         "renderer": "default",
                                         "rendererSpecific": {
                                             "fieldID": "field7",
-                                            "label": "Field #7 (with validation):",
+                                            "label": "Textarea with \"and\" valdiation (length between 3 and 5):",
                                             "css": {
                                                 "wrapper": "row",
                                                 "inner": "",
@@ -414,21 +415,10 @@ module.exports={
                 "cells": [{
                     "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
                     "content": [{
-                        "renderer": "label",
-                        "rendererSpecific": {
-                            "text": "Checkbox"
-                        }
-                    }]
-                }]
-            }, {
-                "css": "row",
-                "cells": [{
-                    "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
-                    "content": [{
                         "renderer": "default",
                         "rendererSpecific": {
                             "fieldID": "field8",
-                            "label": "Field #8:",
+                            "label": "Checkbox example:",
                             "css": {
                                 "wrapper": "row",
                                 "inner": "",
@@ -446,7 +436,7 @@ module.exports={
                         "renderer": "default",
                         "rendererSpecific": {
                             "fieldID": "field9",
-                            "label": "Field #9:",
+                            "label": "Radio-buttons example:",
                             "css": {
                                 "wrapper": "row",
                                 "inner": "",
@@ -480,14 +470,14 @@ module.exports={
                     "content": [{
                         "renderer": "unwrapped",
                         "rendererSpecific": {
-                            "fieldID": "field11",
-                            "css": "btn col-xs-6 col-sm-6 col-md-2 col-md-offset-2"
+                            "fieldID": "btnSave",
+                            "css": "btn btn-save col-xs-6 col-sm-6 col-md-2 col-md-offset-2"
                         }
                     }, {
                         "renderer": "unwrapped",
                         "rendererSpecific": {
-                            "fieldID": "field12",
-                            "css": "btn col-xs-6 col-sm-6 col-md-2 col-md-offset-1"
+                            "fieldID": "btnClear",
+                            "css": "btn btn-clear col-xs-6 col-sm-6 col-md-2 col-md-offset-1"
                         }
                     }]
                 }]

@@ -51,6 +51,7 @@ module.exports = function ( React, tools ) {
                     id: config.fieldID, 
                     className: className, 
                     disabled: meta.isDisabled, 
+                    onBlur: this.handleEvent( 'blur'), 
                     onClick: this.handleClick}, spec.text)
             );
         }

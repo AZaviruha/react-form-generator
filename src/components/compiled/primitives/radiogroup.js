@@ -80,6 +80,7 @@ module.exports = function ( React, tools ) {
                             checked: isChecked, 
                             readOnly: isReadOnly, 
                             onChange: handler, 
+                            onBlur: self.handleEvent( 'blur'), 
                             onKeyPress: self.handleKeyPress})
                     )
                 );

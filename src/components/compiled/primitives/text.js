@@ -30,18 +30,10 @@ module.exports = function ( React, tools ) {
             };
 
             res.value[ res.id ] = e.target.value;
-            this.handleEvent( 'change', e );
+            this.handleEvent( 'change' )( e );
             this._conf().onChange( res );
         },
         
-        handleKeyPress: function ( e ) {
-            this.handleEvent( 'keypress', e );
-        },
-
-        handleEvent: function ( eventName, e ) {
-            var fieldID = this._conf().fieldID;
-            this._conf().onEvent( fieldID, eventName, e );
-        },
 
         /* =========================================================== */
         /* ======================== Renders ========================== */
@@ -60,7 +52,8 @@ module.exports = function ( React, tools ) {
                     value: config.value, 
                     readOnly: meta.isReadOnly || meta.isDisabled, 
                     onChange: this.handleOnChange, 
-                    onKeyPress: this.handleKeyPress})
+                    onBlur: this.handleEvent( 'blur'), 
+                    onKeyPress: this.handleEvent( 'keypress')})
             );
         }
     });

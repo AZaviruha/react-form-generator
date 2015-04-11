@@ -67,6 +67,7 @@ module.exports = function ( React, tools ) {
                     checked={checked}
                     readOnly={meta.isReadOnly || meta.isDisabled}
                     onChange={this.handleOnChange}
+                    onBlur={this.handleEvent( 'blur' )}
                     onKeyPress={this.handleKeyPress}/>
             );
         }

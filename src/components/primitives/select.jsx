@@ -53,6 +53,7 @@ module.exports = function ( React, tools ) {
                         disabled={meta.isDisabled} 
                         className="generated-select-field" 
                         value={config.value} 
+                        onBlur={this.handleEvent( 'blur' )}
                         onChange={this.handleOnChange}>
                     {this.renderItems( spec.possibleValues )}
                 </select>
