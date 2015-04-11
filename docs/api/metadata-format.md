@@ -54,15 +54,6 @@ WARNING! This is work-in-progress!
             "isHidden":     false,
             "isDisabled":   false,
             "validators":   [
-                {
-                    "rule": "required",
-                    "message": "Field is required"
-                },
-                {
-                    "rule": "maxLength",
-                    "value": 5,
-                    "message": "Maximum length of field is 5 characters"
-                },
                 ...
             ],
 
@@ -71,21 +62,45 @@ WARNING! This is work-in-progress!
                 "rows": 7
             }
         }, 
+
+        /**
+         * "checkbox" renderer example.
+         */
+        "field3": {
+            "renderer":     "checkbox",
+            "defaultValue": 1,
+            "isHidden":     false,
+            "isDisabled":   false,
+            "validators":   [
+                ...
+            ],
+
+            "rendererSpecific": {
+                /**
+                 * Allows declaratively set mapping of checkbox
+                 * "checked" and "unchecked" value.
+                 */
+                "truthMap": {
+                    "true":  1,
+                    "false": 0
+                }
+            }
+        }, 
         ...
     },
 
     /**
      * # Layout model
      * This section describes form's presentation part.
-     * Layout is based on the grid system, and forms simple
-     * hierarchy:
+     * Layout is based on the grid system, and is represented
+     * by simple hierarchy:
      *     grid > rows > cells > content
      *
      * It is also possible to form recursive hierarchy:
      *     "content": [{ "renderer": "grid" }]
      *
-     * Layout renders to nested divs, and you can set
-     * custom list of css classes for each level.
+     * Layout is rendered to nested divs. It is possible 
+     * to set custom css classes for each level of hierarchy.
      */
     "layout": {
         "grid": {
