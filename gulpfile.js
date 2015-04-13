@@ -126,11 +126,11 @@ gulp.task( 'demo' , [ 'build-demo' ], shell.task([
  * Builds test specs.
  */
 gulp.task( 'build-component-tests', [ 'compile-components' ], function () {
-    // return gulp.src( 'spec/component/*.jsx' )
-    //            .pipe( react() )
-    //            .pipe( browserify() )
-    //            .pipe( concat( 'component.spec.js' ) )
-    //            .pipe( gulp.dest( 'spec/' ) );
+    return gulp.src( 'spec/components/**/*.jsx' )
+               .pipe( react() )
+               .pipe( browserify() )
+               .pipe( concat( 'components.spec.js' ) )
+               .pipe( gulp.dest( 'spec/compiled/' ) );
 });
 
 

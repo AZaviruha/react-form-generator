@@ -12,7 +12,7 @@ module.exports = function(config) {
         ],
         files: [
             { 
-                pattern:  'spec/compiled/component/*.spec.js',
+                pattern:  'spec/compiled/components.spec.js',
                 watched:  true,
                 included: true,
                 served:   true
