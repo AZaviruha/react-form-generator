@@ -41,14 +41,39 @@ describe( "primitives / text", function () {
 
 
     it( "should call `onChange` handler if field's value changed", function () {
-        var onChange = function ( res ) { expect( res.value.testID ).toBe( '42' ); }
+        var onChange = jasmine.createSpy( 'spy' )
           , conf     = { onChange: onChange }
           , text     = generateText( conf )
           , node     = byTag( text, 'input' );
 
-        Simulate.change( node, { target: { value: '42' }} );
+        Simulate.change( node, { target: { value: '42' } } );
+        expect( onChange ).toHaveBeenCalled();
+        expect( onChange.calls.count() ).toEqual( 1 );
+        expect( onChange.calls.first().args[0].value.testID ).toBe( '42' );
     });
 
+
+    it( "should call `onEvent` handler when field emits event", function () {
+        var onEvent  = jasmine.createSpy( 'spy' )
+          , conf     = { onEvent: onEvent, fieldID: 'newTestID' }
+          , text     = generateText( conf )
+          , node     = byTag( text, 'input' )
+          , args;
+
+        Simulate.blur( node );
+        expect( onEvent ).toHaveBeenCalled();
+        expect( onEvent.calls.count() ).toEqual( 1 );
+        args = onEvent.calls.first().args;
+        expect( args[0] ).toBe( conf.fieldID );
+        expect( args[1] ).toBe( 'blur' );
+        
+        Simulate.focus( node );
+        expect( onEvent ).toHaveBeenCalled();
+        expect( onEvent.calls.count() ).toEqual( 2 );
+        args = onEvent.calls.mostRecent().args;
+        expect( args[0] ).toBe( conf.fieldID );
+        expect( args[1] ).toBe( 'focus' );
+    });
 
 
     function generateText ( newConfig ) {
