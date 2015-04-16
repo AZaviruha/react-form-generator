@@ -55,7 +55,7 @@ function formGenerator ( conf ) {
     * var meta = {
     *     key: "unique key for React",
     *     settings: {
-    *         isReadOnly: true
+    *         isDisabled: true
     *     },
     *     fields: []
     * };

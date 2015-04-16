@@ -9,6 +9,7 @@ var React      = require( 'react/addons' )
   , byTagAll   = TestUtils.scryRenderedDOMComponentsWithTag
   , byClass    = TestUtils.findRenderedDOMComponentWithClass 
   , byClassAll = TestUtils.scryRenderedDOMComponentsWithClass 
+  , Simulate   = TestUtils.Simulate
   , tools      = require( '../../../src/tools/' )
   , Text       = require( '../../../src/components/compiled/primitives/text' )( React, tools );
 
@@ -20,7 +21,7 @@ describe( "primitives / text", function () {
     });
 
 
-    it( "should create disabled input if \"isDisabled\" is `true`", function () {
+    it( "should create readonly input if \"isDisabled\" is `true`", function () {
         var text = generateText({ meta: { isDisabled: true } })
           , node = byTag( text, 'input' ).getDOMNode();
         expect( node.getAttribute( 'readonly' ) ).toBeDefined(); 
@@ -32,9 +33,27 @@ describe( "primitives / text", function () {
     });
 
 
+    it( "should not create input if \"isHidden\" is `true`", function () {
+        var text = generateText({ meta: { isHidden: true } })
+          , node = byTagAll( text, 'input' );
+        expect( node.length ).toEqual( 0 ); 
+    });
+
+
+    it( "should call `onChange` handler if field's value changed", function () {
+        var onChange = function ( res ) { expect( res.value.testID ).toBe( '42' ); }
+          , conf     = { onChange: onChange }
+          , text     = generateText( conf )
+          , node     = byTag( text, 'input' );
+
+        Simulate.change( node, { target: { value: '42' }} );
+    });
+
+
+
     function generateText ( newConfig ) {
         var defaultConfig = {
-            fieldID: 'test-text',
+            fieldID: 'testID',
             meta: {},
             css: '',
             value: null,

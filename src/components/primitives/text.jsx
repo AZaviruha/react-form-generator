@@ -43,6 +43,8 @@ module.exports = function ( React, tools ) {
             var config = this.props.config
               , meta   = this._meta()
               , spec   = this._spec();
+            
+            if ( meta.isHidden ) return null;
 
             return (
                 <input 

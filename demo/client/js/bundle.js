@@ -29625,7 +29625,7 @@ function formGenerator ( conf ) {
     * var meta = {
     *     key: "unique key for React",
     *     settings: {
-    *         isReadOnly: true
+    *         isDisabled: true
     *     },
     *     fields: []
     * };
@@ -30329,6 +30329,8 @@ module.exports = function ( React, tools ) {
             var config = this.props.config
               , meta   = this._meta()
               , spec   = this._spec();
+            
+            if ( meta.isHidden ) return null;
 
             return (
                 React.createElement("input", {
