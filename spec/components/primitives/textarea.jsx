@@ -27,9 +27,9 @@ describe( 'primitives / textarea', function () {
     });
 
 
-    // it( 'should not create input if "isHidden" is `true`', function () {
-    //     var comp = t.generateComponent( TextArea, { meta: { isHidden: true } })
-    //       , nodes = t.byTagAll( comp, 'textarea' );
-    //     expect( nodes.length ).toEqual( 0 ); 
-    // });
+    it( 'should not create input if "isHidden" is `true`', function () {
+        var comp = t.generateComponent( TextArea, { meta: { isHidden: true } })
+          , nodes = t.byTagAll( comp, 'textarea' );
+        expect( nodes.length ).toEqual( 0 ); 
+    });
 });

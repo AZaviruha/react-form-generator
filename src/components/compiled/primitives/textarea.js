@@ -44,6 +44,8 @@ module.exports = function ( React, tools ) {
               , meta   = this._meta()
               , spec   = this._spec();
 
+            if ( meta.isHidden ) return null;
+
             return (
                 React.createElement("textarea", {
                     id: config.fieldID, 
