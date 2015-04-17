@@ -125,12 +125,16 @@ gulp.task( 'demo' , [ 'build-demo' ], shell.task([
 /**
  * Builds test specs.
  */
-gulp.task( 'build-component-tests', [ 'compile-components' ], function () {
-    return gulp.src( 'spec/components/**/*.jsx' )
+gulp.task( 'compile-components-tests', [ 'compile-components' ], function () {
+    return gulp.src( 'spec/components/primitives/*.jsx' )
                .pipe( react() )
+               .pipe( gulp.dest( 'spec/compiled/tmp/' ) );
+});
+
+gulp.task( 'build-component-tests', [ 'compile-components-tests' ], function () {
+    return gulp.src( 'spec/compiled/tmp/*.js' )
                .pipe( browserify() )
-               .pipe( concat( 'components.spec.js' ) )
-               .pipe( gulp.dest( 'spec/compiled/' ) );
+               .pipe( gulp.dest( 'spec/compiled/primitives/' ) );
 });
 
 
