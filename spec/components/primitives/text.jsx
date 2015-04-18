@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var t    = require( './base/' )
   , Text = require( '../../../src/components/compiled/primitives/text' )( t.React, t );
 
@@ -63,5 +62,4 @@ describe( 'primitives / text', function () {
         expect( args[0] ).toBe( conf.fieldID );
         expect( args[1] ).toBe( 'focus' );
     });
-
 });
