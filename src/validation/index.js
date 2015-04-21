@@ -156,9 +156,9 @@ module.exports = function ( conf ) {
      * @returns {Boolean}
      */
     function isFormValid ( formErrors ) {
-        if ( !_.isPlainObject(formErrors) ) return true;
-        var getNotNulls = _.compose( _.compact, _.values );
-        return getNotNulls( formErrors ).length === 0;
+        return t.reduce(function ( acc, obj ) {
+            return acc && !obj.length;
+        }, true, formErrors );
     }
 
 
