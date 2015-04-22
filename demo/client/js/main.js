@@ -40,13 +40,13 @@ $(function () {
         
 
         handleFormEvent: function ( fieldID, eventName, eventInfo ) {
-            log.debug( '------------------------------------------' );
+            log.debug( '=========================================' );
             log.debug( 'handleFormEvent :: fieldID :: ', fieldID );
             log.debug( 'handleFormEvent :: eventName :: ', eventName );
             // log.debug( 'handleFormEvent :: eventInfo :: ', eventInfo );
 
-            this._route( fieldID + ':' + eventName );
-            log.debug( '------------------------------------------' );
+            this._route( eventInfo.path, eventInfo );
+            log.debug( '=========================================' );
         },
 
 
@@ -55,6 +55,7 @@ $(function () {
                 'btnSave:click', [ btnClickHandler ]
             );
         },
+
 
         render: function() {
             return (<GeneratedForm meta={meta}

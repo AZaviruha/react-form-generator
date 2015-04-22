@@ -26,8 +26,12 @@ var PrimitiveAccessors = {
 function handleEvent ( eventName ) {
     var self = this;
     return function ( e ) {
-        var fieldID = self._conf().fieldID;
-        self._conf().onEvent( fieldID, eventName, e );
+        var fieldID   = self._conf().fieldID;
+        var eventInfo = {
+            path          : [ fieldID, eventName ].join( ':' ),
+            originalEvent : e
+        };
+        self._conf().onEvent( fieldID, eventName, eventInfo );
     };
 };
 

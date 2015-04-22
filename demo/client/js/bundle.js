@@ -41,13 +41,13 @@ $(function () {
         
 
         handleFormEvent: function ( fieldID, eventName, eventInfo ) {
-            log.debug( '------------------------------------------' );
+            log.debug( '=========================================' );
             log.debug( 'handleFormEvent :: fieldID :: ', fieldID );
             log.debug( 'handleFormEvent :: eventName :: ', eventName );
             // log.debug( 'handleFormEvent :: eventInfo :: ', eventInfo );
 
-            this._route( fieldID + ':' + eventName );
-            log.debug( '------------------------------------------' );
+            this._route( eventInfo.path, eventInfo );
+            log.debug( '=========================================' );
         },
 
 
@@ -56,6 +56,7 @@ $(function () {
                 'btnSave:click', [ btnClickHandler ]
             );
         },
+
 
         render: function() {
             return (React.createElement(GeneratedForm, {meta: meta, 
@@ -30507,8 +30508,12 @@ var PrimitiveAccessors = {
 function handleEvent ( eventName ) {
     var self = this;
     return function ( e ) {
-        var fieldID = self._conf().fieldID;
-        self._conf().onEvent( fieldID, eventName, e );
+        var fieldID   = self._conf().fieldID;
+        var eventInfo = {
+            path          : [ fieldID, eventName ].join( ':' ),
+            originalEvent : e
+        };
+        self._conf().onEvent( fieldID, eventName, eventInfo );
     };
 };
 
