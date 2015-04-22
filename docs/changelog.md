@@ -2,7 +2,7 @@
 
 #### 0.2.1
 * Fixed `isHidden` for `text` and `textarea` primitive.
-* Fixed `isFormValid`.
+* Fixed `isFormValid` (remove old lodash dependencies).
 
 #### 0.2.0
 * Added `blur` event handler for all standard primitives.
