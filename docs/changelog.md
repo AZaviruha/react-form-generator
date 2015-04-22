@@ -1,5 +1,9 @@
 <h2>Changelog</h2>
 
+#### 0.2.1
+* Fixed `isHidden` for `text` and `textarea` primitive.
+* Fixed `isFormValid`.
+
 #### 0.2.0
 * Added `blur` event handler for all standard primitives.
 * Added `focus` event handler for all standard primitives.
