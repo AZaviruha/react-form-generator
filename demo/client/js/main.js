@@ -10,7 +10,8 @@ var $     = require( 'jquery' )
 
 $(function () {
     var GeneratedForm = FG({})
-      , validateForm  = GeneratedForm.validateForm;
+      , validateForm  = GeneratedForm.validateForm
+      , isFormValid   = GeneratedForm.isFormValid;
 
     var App = React.createClass({
         getInitialState: function () {
@@ -43,9 +44,17 @@ $(function () {
             log.debug( 'handleFormEvent :: fieldID :: ', fieldID );
             log.debug( 'handleFormEvent :: eventName :: ', eventName );
             // log.debug( 'handleFormEvent :: eventInfo :: ', eventInfo );
+
+            this._route( fieldID + ':' + eventName );
             log.debug( '------------------------------------------' );
         },
 
+
+        componentDidMount: function () {
+            this._route = t.buildRouter(
+                'btnSave:click', [ btnClickHandler ]
+            );
+        },
 
         render: function() {
             return (<GeneratedForm meta={meta}
@@ -55,6 +64,17 @@ $(function () {
                                    onEvent={this.handleFormEvent}/>);
         }
     });
+
+
+    function btnClickHandler () {
+        this.setState({
+            errors: validateForm( meta, this.state.value )
+        }, function () {
+            if ( !isFormValid( this.state.errors ) ) {
+                alert( 'Form is not valid!' );
+            }
+        });
+    }
 
     React.render( <App />, document.body );
 });

@@ -11,7 +11,8 @@ var $     = require( 'jquery' )
 
 $(function () {
     var GeneratedForm = FG({})
-      , validateForm  = GeneratedForm.validateForm;
+      , validateForm  = GeneratedForm.validateForm
+      , isFormValid   = GeneratedForm.isFormValid;
 
     var App = React.createClass({displayName: "App",
         getInitialState: function () {
@@ -44,9 +45,17 @@ $(function () {
             log.debug( 'handleFormEvent :: fieldID :: ', fieldID );
             log.debug( 'handleFormEvent :: eventName :: ', eventName );
             // log.debug( 'handleFormEvent :: eventInfo :: ', eventInfo );
+
+            this._route( fieldID + ':' + eventName );
             log.debug( '------------------------------------------' );
         },
 
+
+        componentDidMount: function () {
+            this._route = t.buildRouter(
+                'btnSave:click', [ btnClickHandler ]
+            );
+        },
 
         render: function() {
             return (React.createElement(GeneratedForm, {meta: meta, 
@@ -56,6 +65,17 @@ $(function () {
                                    onEvent: this.handleFormEvent}));
         }
     });
+
+
+    function btnClickHandler () {
+        this.setState({
+            errors: validateForm( meta, this.state.value )
+        }, function () {
+            if ( !isFormValid( this.state.errors ) ) {
+                alert( 'Form is not valid!' );
+            }
+        });
+    }
 
     React.render( React.createElement(App, null), document.body );
 });
@@ -30396,6 +30416,8 @@ module.exports = function ( React, tools ) {
               , meta   = this._meta()
               , spec   = this._spec();
 
+            if ( meta.isHidden ) return null;
+
             return (
                 React.createElement("textarea", {
                     id: config.fieldID, 
@@ -30945,9 +30967,9 @@ module.exports = function ( conf ) {
      * @returns {Boolean}
      */
     function isFormValid ( formErrors ) {
-        if ( !_.isPlainObject(formErrors) ) return true;
-        var getNotNulls = _.compose( _.compact, _.values );
-        return getNotNulls( formErrors ).length === 0;
+        return t.reduce(function ( acc, v, k ) {
+            return acc && !(v && v.length);
+        }, true, formErrors );
     }
 
 

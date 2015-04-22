@@ -156,8 +156,8 @@ module.exports = function ( conf ) {
      * @returns {Boolean}
      */
     function isFormValid ( formErrors ) {
-        return t.reduce(function ( acc, obj ) {
-            return acc && !obj.length;
+        return t.reduce(function ( acc, v, k ) {
+            return acc && !(v && v.length);
         }, true, formErrors );
     }
 
