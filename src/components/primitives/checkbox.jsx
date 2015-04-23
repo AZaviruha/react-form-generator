@@ -48,8 +48,13 @@ module.exports = function ( React, tools ) {
             var config   = this._conf()
               , meta     = this._meta()
               , spec     = this._spec()
+              , value    = config.value
               , truthMap = getOrNull( spec, 'truthMap' )
-              , checked  = truthMap[ "true" ] === config.value;
+              , checked  = truthMap 
+                    ? truthMap[ "true" ] === value
+                    : value;
+            
+            if ( meta.isHidden ) return null;
 
             return (
                 <input 
