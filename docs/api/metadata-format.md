@@ -86,6 +86,27 @@ WARNING! This is work-in-progress!
                 }
             }
         }, 
+
+        /**
+         * "radiogroup" renderer example.
+         * (set of radio-buttons).
+         */
+        "field4": {
+            "renderer":     "radiogroup",
+            "defaultValue": "second",
+            "isHidden":     false,
+            "isDisabled":   false,
+            "validators":   [
+                ...
+            ],
+
+            "rendererSpecific": {
+                "possibleValues": [
+                    { "id": "first",  "text": "First" },
+                    { "id": "second", "text": "Second" }
+                ]
+            }
+        }, 
         ...
     },
 
