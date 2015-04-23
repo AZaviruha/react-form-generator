@@ -42,7 +42,10 @@ module.exports = function ( React, tools ) {
         /* =========================================================== */
         render: function () {
             var config = this._conf()
+              , meta   = this._meta()
               , spec   = this._spec();
+
+            if ( meta.isHidden ) return null;
 
             return (
                 <div className="generated-radiogroup-field"

@@ -15,13 +15,13 @@ var React      = require( 'react/addons' )
 
 function generateComponent ( Component, newConfig ) {
     var defaultConfig = {
-        fieldID: 'testID',
-        meta: {},
-        css: '',
-        value: null,
-        errors: null,
-        onChange: function () {},
-        onEvent: function () {}
+        fieldID  : 'testID',
+        meta     : {},
+        css      : '',
+        value    : null,
+        errors   : null,
+        onChange : function () {},
+        onEvent  : function () {}
     };
 
     var config = tools.merge( defaultConfig, newConfig );
