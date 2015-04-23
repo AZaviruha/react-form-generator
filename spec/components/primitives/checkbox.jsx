@@ -40,7 +40,7 @@ describe( 'primitives / checkbox', function () {
     });
 
 
-    it( 'should render checked checkbox if conf.value is `false`', function () {
+    it( 'should render unchecked checkbox if conf.value is `false`', function () {
         var conf   = { value: false }
           , comp   = t.generateComponent( Checkbox, conf )
           , input  = t.byTag( comp, 'input' )
