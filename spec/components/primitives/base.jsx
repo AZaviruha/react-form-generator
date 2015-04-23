@@ -33,11 +33,12 @@ function generateComponent ( Component, newConfig ) {
 
 
 module.exports = tools.merge({
-    React      : React,
-    byTag      : byTag,
-    byTagAll   : byTagAll,
-    byClass    : byClass,
-    byClassAll : byClassAll,
-    Simulate   : Simulate,
+    React       : React,
+    findDOMNode : React.findDOMNode,
+    byTag       : byTag,
+    byTagAll    : byTagAll,
+    byClass     : byClass,
+    byClassAll  : byClassAll,
+    Simulate    : Simulate,
     generateComponent : generateComponent
 }, tools );
