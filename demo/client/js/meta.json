@@ -124,9 +124,21 @@
                 ]
             }
         },
-        "field10": {
+        "select-field": {
             "renderer": "select",
             "isDisabled": false,
+            "defaultValue": "second",
+            "rendererSpecific": {
+                "possibleValues": [
+                    { "id": "first", "text": "First option" },
+                    { "id": "second", "text": "Second option" },
+                    { "id": "third", "text": "Third option" }
+                ]
+            }
+        },
+        "select-field-disabled": {
+            "renderer": "select",
+            "isDisabled": true,
             "defaultValue": "second",
             "rendererSpecific": {
                 "possibleValues": [
@@ -390,8 +402,25 @@
                     "content": [{
                         "renderer": "default",
                         "rendererSpecific": {
-                            "fieldID": "field10",
-                            "label": "Field #10:",
+                            "fieldID": "select-field",
+                            "label": "Select:",
+                            "css": {
+                                "wrapper": "row",
+                                "label": "col-xs-12 col-sm-12 col-md-2",
+                                "field": "col-xs-12 col-sm-12 col-md-10"
+                            }
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
+                    "content": [{
+                        "renderer": "default",
+                        "rendererSpecific": {
+                            "fieldID": "select-field-disabled",
+                            "label": "Select (disabled):",
                             "css": {
                                 "wrapper": "row",
                                 "label": "col-xs-12 col-sm-12 col-md-2",
@@ -414,7 +443,7 @@
                         "renderer": "unwrapped",
                         "rendererSpecific": {
                             "fieldID": "btnClear",
-                            "css": "btn btn-clear col-xs-6 col-sm-6 col-md-2 col-md-offset-1"
+                            "css": "btn btn-clear col-xs-6 col-sm-6 col-md-2 col-xs-offset-1"
                         }
                     }]
                 }]

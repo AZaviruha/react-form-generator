@@ -210,9 +210,21 @@ module.exports={
                 ]
             }
         },
-        "field10": {
+        "select-field": {
             "renderer": "select",
             "isDisabled": false,
+            "defaultValue": "second",
+            "rendererSpecific": {
+                "possibleValues": [
+                    { "id": "first", "text": "First option" },
+                    { "id": "second", "text": "Second option" },
+                    { "id": "third", "text": "Third option" }
+                ]
+            }
+        },
+        "select-field-disabled": {
+            "renderer": "select",
+            "isDisabled": true,
             "defaultValue": "second",
             "rendererSpecific": {
                 "possibleValues": [
@@ -476,8 +488,25 @@ module.exports={
                     "content": [{
                         "renderer": "default",
                         "rendererSpecific": {
-                            "fieldID": "field10",
-                            "label": "Field #10:",
+                            "fieldID": "select-field",
+                            "label": "Select:",
+                            "css": {
+                                "wrapper": "row",
+                                "label": "col-xs-12 col-sm-12 col-md-2",
+                                "field": "col-xs-12 col-sm-12 col-md-10"
+                            }
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
+                    "content": [{
+                        "renderer": "default",
+                        "rendererSpecific": {
+                            "fieldID": "select-field-disabled",
+                            "label": "Select (disabled):",
                             "css": {
                                 "wrapper": "row",
                                 "label": "col-xs-12 col-sm-12 col-md-2",
@@ -500,7 +529,7 @@ module.exports={
                         "renderer": "unwrapped",
                         "rendererSpecific": {
                             "fieldID": "btnClear",
-                            "css": "btn btn-clear col-xs-6 col-sm-6 col-md-2 col-md-offset-1"
+                            "css": "btn btn-clear col-xs-6 col-sm-6 col-md-2 col-xs-offset-1"
                         }
                     }]
                 }]
@@ -30114,8 +30143,13 @@ module.exports = function ( React, tools ) {
             var config   = this._conf()
               , meta     = this._meta()
               , spec     = this._spec()
+              , value    = config.value
               , truthMap = getOrNull( spec, 'truthMap' )
-              , checked  = truthMap[ "true" ] === config.value;
+              , checked  = truthMap 
+                    ? truthMap[ "true" ] === value
+                    : value;
+            
+            if ( meta.isHidden ) return null;
 
             return (
                 React.createElement("input", {
@@ -30179,7 +30213,10 @@ module.exports = function ( React, tools ) {
         /* =========================================================== */
         render: function () {
             var config = this._conf()
+              , meta   = this._meta()
               , spec   = this._spec();
+
+            if ( meta.isHidden ) return null;
 
             return (
                 React.createElement("div", {className: "generated-radiogroup-field", 
@@ -30271,6 +30308,8 @@ module.exports = function ( React, tools ) {
             var config = this._conf()
               , spec   = this._spec()
               , meta   = this._meta();
+
+            if ( meta.isHidden ) return null;
 
             return (
                 React.createElement("select", {id: config.fieldID, 
