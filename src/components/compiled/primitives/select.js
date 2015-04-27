@@ -45,6 +45,8 @@ module.exports = function ( React, tools ) {
               , spec   = this._spec()
               , meta   = this._meta();
 
+            if ( meta.isHidden ) return null;
+
             return (
                 React.createElement("select", {id: config.fieldID, 
                         disabled: meta.isDisabled, 
