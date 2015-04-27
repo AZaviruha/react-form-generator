@@ -2,7 +2,7 @@ var t          = require( './base/' )
   , RadioGroup = require( '../../../src/components/compiled/primitives/radiogroup' )( t.React, t );
 
 describe( 'primitives / radiogroup', function () {
-    it( 'should create set of input with type "radio"', function () {
+    it( 'should create set of inputs with type "radio"', function () {
         var conf = { 
             meta: { 
                 rendererSpecific: {
