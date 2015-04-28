@@ -16,10 +16,12 @@ WARNING! This is work-in-progress!
          * "text" renderer example.
          */
         "field1": {
+
             /**
              * All properties at this level are common for all
              * types of renderers.
              */
+
             "renderer":     "text",
             "defaultValue": "some default value",
             "isHidden":     false,
@@ -36,7 +38,6 @@ WARNING! This is work-in-progress!
                 },
                 ...
             ],
-
 
             /**
              * All properties in "rendererSpecific" are
@@ -56,7 +57,6 @@ WARNING! This is work-in-progress!
             "validators":   [
                 ...
             ],
-
             "rendererSpecific": {
                 "cols": 42,
                 "rows": 7
@@ -74,7 +74,6 @@ WARNING! This is work-in-progress!
             "validators":   [
                 ...
             ],
-
             "rendererSpecific": {
                 /**
                  * Allows declaratively set mapping of checkbox
@@ -99,12 +98,50 @@ WARNING! This is work-in-progress!
             "validators":   [
                 ...
             ],
-
             "rendererSpecific": {
+                /**
+                 * Set of elements for radio-buttons generation.
+                 */
                 "possibleValues": [
                     { "id": "first",  "text": "First" },
                     { "id": "second", "text": "Second" }
                 ]
+            }
+        }, 
+
+
+        /**
+         * "select" renderer example.
+         */
+        "field5": {
+            "renderer":     "select",
+            "defaultValue": "second",
+            "isHidden":     false,
+            "isDisabled":   false,
+            "validators":   [
+                ...
+            ],
+            "rendererSpecific": {
+                /**
+                 * Set of elements for <options>'s generation.
+                 */
+                "possibleValues": [
+                    { "id": "first",  "text": "First" },
+                    { "id": "second", "text": "Second" }
+                ]
+            }
+        }, 
+
+
+        /**
+         * "button" renderer example.
+         */
+        "field6": {
+            "renderer":     "button",
+            "isHidden":     false,
+            "isDisabled":   false,
+            "rendererSpecific": {
+                "text": "Button Text"
             }
         }, 
         ...
