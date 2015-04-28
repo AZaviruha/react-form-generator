@@ -36,6 +36,8 @@ module.exports = function ( React, tools ) {
                 isUnwrapped && config.css
             );
 
+            if ( meta.isHidden ) return null;
+
             return (
                 React.createElement("button", {
                     id: config.fieldID, 
