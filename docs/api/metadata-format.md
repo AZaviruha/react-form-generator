@@ -1,6 +1,6 @@
 <h2>Metadata format description</h2>
 
-WARNING! This is work-in-progress!
+WARNING! Layout metadata API is still in progress!
 
 ```javascript
 {
@@ -146,6 +146,7 @@ WARNING! This is work-in-progress!
         }, 
         ...
     },
+
 
     /**
      * # Layout model
