@@ -29859,6 +29859,13 @@ function formGenerator ( conf ) {
                 var cntSpec   = getOrDefault( cnt, 'rendererSpecific' )
                   , fldID     = cntSpec.fieldID
                   , fldMeta   = getOrNull( meta.fields, fldID );
+                
+                /**
+                 * Don't render layout for undefined 
+                 * or explicitly hidden field.
+                 */
+                if ( !fldMeta || fldMeta.isHidden ) 
+                    return null;
 
                 var config = {
                     fieldID:   fldID,
