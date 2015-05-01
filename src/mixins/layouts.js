@@ -4,6 +4,10 @@ var tools          = require( './../tools' )
 
 var LayoutAccessors = {
     componentWillMount: function() {
+        /**
+         * Returns "content" metadata from
+         * "layout" section.
+         */
         this._meta = function () {
             return getOrDefault( this, 'props.meta', {} );
         };

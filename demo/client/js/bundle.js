@@ -162,6 +162,7 @@ module.exports={
         "field6": {
             "renderer": "textarea",
             "isDisabled": true,
+            "isHidden": true,
             "defaultValue": "default value for textarea field",
             "rendererSpecific": {
                 "cols": 50,
@@ -29859,13 +29860,6 @@ function formGenerator ( conf ) {
                 var cntSpec   = getOrDefault( cnt, 'rendererSpecific' )
                   , fldID     = cntSpec.fieldID
                   , fldMeta   = getOrNull( meta.fields, fldID );
-                
-                /**
-                 * Don't render layout for undefined 
-                 * or explicitly hidden field.
-                 */
-                if ( !fldMeta || fldMeta.isHidden ) 
-                    return null;
 
                 var config = {
                     fieldID:   fldID,
@@ -30004,7 +29998,16 @@ module.exports = function ( React, tools ) {
 
         render : function () {
             var css     = this._css()
-              , fldConf = this._field();
+              , fldConf = this._field()
+              , fldMeta = fldConf.meta;
+
+
+            /**
+             * Don't render layout for undefined 
+             * or explicitly hidden field.
+             */
+            if ( !fldMeta || fldMeta.isHidden ) 
+                return null;
             
             return (
                 React.createElement("div", {className: css.wrapper, key: this.props.key}, 
@@ -30503,6 +30506,10 @@ var tools          = require( './../tools' )
 
 var LayoutAccessors = {
     componentWillMount: function() {
+        /**
+         * Returns "content" metadata from
+         * "layout" section.
+         */
         this._meta = function () {
             return getOrDefault( this, 'props.meta', {} );
         };

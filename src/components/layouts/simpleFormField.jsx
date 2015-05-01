@@ -13,7 +13,16 @@ module.exports = function ( React, tools ) {
 
         render : function () {
             var css     = this._css()
-              , fldConf = this._field();
+              , fldConf = this._field()
+              , fldMeta = fldConf.meta;
+
+
+            /**
+             * Don't render layout for undefined 
+             * or explicitly hidden field.
+             */
+            if ( !fldMeta || fldMeta.isHidden ) 
+                return null;
             
             return (
                 <div className={css.wrapper} key={this.props.key}>
