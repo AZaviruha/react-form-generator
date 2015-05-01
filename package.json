@@ -1,6 +1,6 @@
 {
   "name": "react-form-generator",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "React Form Generator.",
   "main": "src/components/compiled/generated-form.js",
   "scripts": {

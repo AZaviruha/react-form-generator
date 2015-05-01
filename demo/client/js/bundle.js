@@ -162,7 +162,6 @@ module.exports={
         "field6": {
             "renderer": "textarea",
             "isDisabled": true,
-            "isHidden": true,
             "defaultValue": "default value for textarea field",
             "rendererSpecific": {
                 "cols": 50,
@@ -29750,7 +29749,25 @@ function formGenerator ( conf ) {
              * }
              * ```
              */
-            onChange:          React.PropTypes.func
+            onChange:          React.PropTypes.func,
+
+
+            
+            /**
+             * ### onEvent 
+             * Fires when field triggers some of standard DOM events.
+             * Callback will get the next data:
+             * @param {string} fieldID  - ID of field that triggers
+             *                            DOM event
+             * @param {string} eventName - name of event (one of
+             *                             stadart DOM events).
+             * @param {Object} eventInfo - useful info about event.
+             * @param {SyntheticEvent} eventInfo.originalEvent - original React event
+             * @param {string} eventInfo.path - %fiendID%:%eventName%
+             *                                  (useful for event routing). 
+             * ```
+             */
+            onEvent:          React.PropTypes.func
         },
 
         mixins: MIXINS,

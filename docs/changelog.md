@@ -1,5 +1,15 @@
 <h2>Changelog</h2>
 
+#### 0.3.0
+* Add unit-tests for `text` primitive.
+* Add unit-tests for `textarea` primitive.
+* Add unit-tests for `checkbox` primitive.
+* Add unit-tests for `radiogroup` primitive.
+* Add unit-tests for `select` primitive.
+* Add unit-tests for `button` primitive.
+* Bugfix: rendering for undefined or hidden fields in `simpleFormField` layout renderer.
+* Breaking! Change `eventInfo` argument of `onEvent` handler (add event's path).
+
 #### 0.2.1
 * Fixed `isHidden` for `text` and `textarea` primitive.
 * Fixed `isFormValid` (remove old lodash dependencies).
