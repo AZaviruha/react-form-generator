@@ -21,6 +21,11 @@ module.exports = function(config) {
                 watched:  true,
                 included: true,
                 served:   true
+            }, { 
+                pattern:  'spec/compiled/validation/*.js',
+                watched:  true,
+                included: true,
+                served:   true
             } 
         ],
         reporters: [ 'progress' ],

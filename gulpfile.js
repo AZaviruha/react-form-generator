@@ -145,8 +145,16 @@ gulp.task( 'build-tools-tests', function () {
 });
 
 
+gulp.task( 'build-validation-tests', function () {
+    return gulp.src( 'spec/validation/*.js' )
+               .pipe( browserify() )
+               .pipe( gulp.dest( 'spec/compiled/validation/' ) );
+});
+
+
 var testDeps = [ 'build-component-tests'
                , 'build-tools-tests'
+               , 'build-validation-tests'
                ];
 /**
  * Runs unit-tests.
@@ -168,5 +176,9 @@ gulp.task( 'watch', [ 'build-demo' ], function() {
     gulp.watch( './src/components/*.jsx', [ 'build-demo' ] );
     gulp.watch( './src/validation/*.js', [ 'build-demo' ] );
     gulp.watch( './src/tools/*.js', [ 'build-demo' ] );
+
+    // tests
     gulp.watch( './spec/components/**/*.jsx', [ 'test' ] );
+    gulp.watch( './spec/tools/*.js', [ 'test' ] );
+    gulp.watch( './spec/validation/*.js', [ 'test' ] );
 });
