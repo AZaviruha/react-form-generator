@@ -10,7 +10,8 @@ describe( 'validation/index.js', function () {
                 .toEqual({ 'test': null });
         });
 
-        it( 'should return array with errors if `validators` are set and value is not valid', function () {
+        it2( 'should return array with errors if `validators`', 
+            'are set and value is not valid', function () {
             var validators = [{ rule: 'required', message: 'err' }];
             fldMeta.validators = validators;
 
@@ -18,8 +19,8 @@ describe( 'validation/index.js', function () {
                 .toEqual({ 'test': validators });
         });
         
-        it2( 'should return array with only those errors, that if `validators` are set ',
-             'and value is not valid', function () {
+        it2( 'should return array with only errors ',
+             'from failed validators', function () {
             var validators = [{ rule: 'required', message: 'err1' },
                               { rule: 'length', value: 5, message: 'err2' }];
             fldMeta.validators = validators;
