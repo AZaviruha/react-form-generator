@@ -5,13 +5,14 @@ describe( 'validation/index.js', function () {
         var fldID   = 'test';
         var fldMeta = { renderer: 'text', validators: [] };
 
-        it( 'should return `null` instead of errors array if `validators` are unset', function () {
+        it2( 'should return `null` instead of errors array if ',
+            '`validators` are unset', function () {
             expect( v.validateField( fldID, fldMeta, null ) )
                 .toEqual({ 'test': null });
         });
 
-        it2( 'should return array with errors if `validators`', 
-            'are set and value is not valid', function () {
+        it2( 'should return array with errors if `validators` ', 
+             'are set and value is not valid', function () {
             var validators = [{ rule: 'required', message: 'err' }];
             fldMeta.validators = validators;
 
