@@ -76,6 +76,28 @@ describe( 'validation/index.js', function () {
                 .toEqual({ 'field1': validators });
         });
     });
+    
+
+    
+    describe( 'isFormValid', function () {
+        it( 'should return `true` if array of errors is null', function () {
+            expect( v.isFormValid(null) ).toEqual( true );
+        });
+        
+        it( 'should return `true` if array of errors is empty', function () {
+            expect( v.isFormValid({}) ).toEqual( true );
+        });
+
+        it2( 'should return `true` if array of errors ', 
+             'contains only empty keys', function () {
+            expect( v.isFormValid({ test: [] }) ).toEqual( true );
+        });
+
+        it2( 'should return `false` if array of errors ', 
+             'contains non-empty keys', function () {
+            expect( v.isFormValid({ test: [1] }) ).toEqual( false );
+        });
+    });
 
 });
 
