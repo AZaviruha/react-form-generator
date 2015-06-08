@@ -53,7 +53,8 @@ $(function () {
 
         componentDidMount: function () {
             this._route = t.buildRouter(
-                'btnSave:click', [ btnClickHandler ]
+                'btnSave:click',  [ sendForm ],
+                'btnClear:click', [ clearForm ]
             );
         },
 
@@ -68,7 +69,7 @@ $(function () {
     });
 
 
-    function btnClickHandler () {
+    function sendForm () {
         this.setState({
             errors: validateForm( meta, this.state.value )
         }, function () {
@@ -77,6 +78,16 @@ $(function () {
             }
         });
     }
+    
+
+    function clearForm () {
+        this.setState({ 
+            value:   t.evalDefaults( meta ),
+            errors:  null,
+            _errors: null
+        });
+    }
+
 
     React.render( React.createElement(App, null), document.body );
 });
