@@ -16,8 +16,8 @@ Features:
 
 ### Demo ###
 
-[Simple demo][simple-demo-url], [source][simple-demo-source].
-[CRUD demo][crud-demo-url], [source][crud-demo-source].
+* [Simple demo][simple-demo-url], [source][simple-demo-source];
+* [CRUD demo][crud-demo-url], [source][crud-demo-source] 
 
 Right now I'm working on more comprehensive demo, but it can take some time...
  
