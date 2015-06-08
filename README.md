@@ -13,6 +13,13 @@ Features:
 * validation (includes complex validators ```or``` and ```and```);
 * grid-based layout (nested grids are possible too).
 * extensibility (support for custom *primitive* and custom *layout* renderers)
+
+### Demo ###
+
+[Simple demo][simple-demo-url], [source][simple-demo-source].
+[CRUD demo][crud-demo-url], [source][crud-demo-source].
+
+Right now I'm working on more comprehensive demo, but it can take some time...
  
 
 ### Usage ###
@@ -61,3 +68,7 @@ Distributed under the MIT License (see LICENSE file).
 [npm-stats]: https://nodei.co/npm/react-form-generator.png?downloads=true
 [cclimate-image]: https://codeclimate.com/github/AZaviruha/react-form-generator/badges/gpa.svg
 [cclimate-url]: https://codeclimate.com/github/AZaviruha/react-form-generator
+[simple-demo-url]: http://azaviruha.github.io/demo/react-form-generator/simple/
+[simple-demo-source]: https://github.com/AZaviruha/react-form-generator/blob/master/demo/client/js/main.js
+[crud-demo-url]: http://azaviruha.github.io/demo/react-form-generator/crud/
+[crud-demo-source]: https://github.com/AZaviruha/react-form-generator-demo
