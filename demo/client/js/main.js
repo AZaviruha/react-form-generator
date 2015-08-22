@@ -1,21 +1,116 @@
 /** @jsx React.DOM */
 
-var $     = require( 'jquery' )
-  , React = require( 'react' )
-  , log   = window.log = require( 'front-log' )
-  , FG    = require( '../../../src/components/compiled/generated-form' )
-  , t     = FG.tools
-  , meta  = require( './meta.json' );
+var $            = require( 'jquery' )
+  , _            = require( 'lodash' )
+  , React        = require( 'react' )
+  , log          = window.log = require( 'front-log' )
+  , mixins       = require( '../../../src/mixins' )
+  , FG           = require( '../../../src/components/compiled/generated-form' )
+  , t            = FG.tools
+  , getOrDefault = t.getOrDefault
+  , getOrNull    = t.getOrNull
+  , meta         = require( './meta.json' );
 
 
 $(function () {
-    var GeneratedForm = FG({})
+    /**
+     * Custom components example: CheckGroup
+     */
+    var CheckGroup = React.createClass({
+        displayName: 'CheckboxRenderer',
+
+        propTypes: {
+            config: React.PropTypes.object.isRequired
+        },
+
+        mixins: [ mixins.PrimitiveAccessors ],
+
+        /* =========================================================== */
+        /* ======================== Lyfe Cycle ======================= */
+        /* =========================================================== */
+        getDefaultProps: function () {
+            return { config: {} };
+        },
+
+        /* =========================================================== */
+        /* ======================== Handlers ========================= */
+        /* =========================================================== */
+        handleOnChange: function ( e, item ) {
+            var res = { 
+                id:    this._conf().fieldID,
+                meta:  this._meta(),
+                value: {}
+            };
+            var oldValue = getOrDefault( this, 'props.config.value', [] );
+            res.value[ res.id ] = _.contains(oldValue, item.id ) 
+                ? _.without( oldValue, item.id ) : oldValue.concat([ item.id ]);
+
+            this.handleEvent( 'change')( e );
+            this._conf().onChange( res );
+        },
+
+        handleEvent: mixins.handleEvent,
+
+        /* =========================================================== */
+        /* ======================== Renders ========================== */
+        /* =========================================================== */
+        render: function () {
+            var config = this._conf()
+              , meta   = this._meta()
+              , spec   = this._spec();
+            
+            if ( meta.isHidden ) return null;
+
+            return (
+                <div className="generated-checkgroup-field"
+                     id={config.fieldID}>
+                    {this.renderItems( spec.possibleValues )}
+                </div>
+            );
+        },
+
+        renderItems: function ( items ) {
+            var self   = this
+              , config = this._conf()
+              , meta   = this._meta();
+
+            return (items || []).map(function ( item, idx ) {
+                var value      = getOrDefault( config, 'value', [] )
+                  , isChecked  = _.contains( value, item.id )
+                  , isReadOnly = meta.isReadOnly || meta.isDisabled
+                  , key        = config.fieldID + '-' + idx;
+
+                return (
+                    <label key={key}>
+                        <span className="generated-checkbox-label">{item.text}</span>
+                        <input 
+                            type="checkbox"
+                            className="generated-checkbox-item"
+                            name={item.name}
+                            checked={isChecked}
+                            readOnly={isReadOnly}
+                            onChange={handler} />
+                    </label>
+                );
+                
+                function handler ( e ) {
+                    return self.handleOnChange( e, item ); 
+                }
+            });
+        }
+    });
+
+
+    var GeneratedForm = FG({
+            primitives : { 'checkgroup' : CheckGroup }
+        })
       , validateForm  = GeneratedForm.validateForm
       , isFormValid   = GeneratedForm.isFormValid;
 
     var App = React.createClass({
         getInitialState: function () {
             var value = t.evalDefaults( meta );
+            value[ 'custom-comp-example' ] = [];
 
             var init = {
                 value:   value,

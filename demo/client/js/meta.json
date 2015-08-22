@@ -148,6 +148,17 @@
                 ]
             }
         },
+        "custom-comp-example": {
+            "renderer": "checkgroup",
+            "defaultValue": "second",
+            "rendererSpecific": {
+                "possibleValues": [
+                    { "id": "first", "text": "First option" },
+                    { "id": "second", "text": "Second option" },
+                    { "id": "third", "text": "Third option" }
+                ]
+            }
+        },
         "btnSave": {
             "renderer": "button",
             "rendererSpecific": {
@@ -421,6 +432,23 @@
                         "rendererSpecific": {
                             "fieldID": "select-field-disabled",
                             "label": "Select (disabled):",
+                            "css": {
+                                "wrapper": "row",
+                                "label": "col-xs-12 col-sm-12 col-md-2",
+                                "field": "col-xs-12 col-sm-12 col-md-10"
+                            }
+                        }
+                    }]
+                }]
+            }, {
+                "css": "row",
+                "cells": [{
+                    "css": "col-xs-12 col-sm-12 col-md-10 col-md-offset-1",
+                    "content": [{
+                        "renderer": "default",
+                        "rendererSpecific": {
+                            "fieldID": "custom-comp-example",
+                            "label": "Custom component example:",
                             "css": {
                                 "wrapper": "row",
                                 "label": "col-xs-12 col-sm-12 col-md-2",

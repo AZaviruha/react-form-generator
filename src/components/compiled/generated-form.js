@@ -13,10 +13,10 @@ var t              = require( '../../tools' )
  * Provides GeneratedForm component.
  * Can be configured by `conf` arguments:
  * @param {Object} conf - settings for component builder.
- * @param {Object[]} conf.validators - array of custom validators.
- * @param {Object[]} conf.mixins - array of React's mixins.
- * @param {Object[]} conf.primitiveRenderers - array of custom primitive's renderers.
- * @param {Object[]} conf.layoutRenderers - array of custom layout's renderers.
+ * @param {Object[]} conf.validators - map of custom validators.
+ * @param {Object[]} conf.mixins - map of React's mixins.
+ * @param {Object[]} conf.primitives - map of custom primitive's renderers.
+ * @param {Object[]} conf.layouts - map of custom layout's renderers.
  * @return {ReactElement}
  */
 function formGenerator ( conf ) { 
@@ -34,7 +34,7 @@ function formGenerator ( conf ) {
         radiogroup: require( './primitives/radiogroup' )( R, t ),
         select:     require( './primitives/select' )( R, t ),
         button:     require( './primitives/button' )( R, t )
-    }, getOrDefault( conf, 'mixins.fieldRenderers', {} ));
+    }, getOrDefault( conf, 'primitives', {} ));
     
 
     var LAYOUTS = merge({
@@ -42,7 +42,7 @@ function formGenerator ( conf ) {
         unwrapped:  require( './layouts/unwrapped' )( R, t ),
         label:      require( './layouts/label' )( R, t ),
         header:     require( './layouts/header' )( R, t )
-    }, getOrDefault( conf, 'mixins.layoutRenderers', {} ));
+    }, getOrDefault( conf, 'layouts', {} ));
 
 
     /**
