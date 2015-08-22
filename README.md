@@ -66,7 +66,7 @@ Distributed under the MIT License (see LICENSE file).
 [docs-image]: https://readthedocs.org/projects/react-form-generator/badge/?version=latest
 [docs-url]: http://react-form-generator.readthedocs.org/en/latest/
 [npm-url]: https://www.npmjs.org/package/react-form-generator
-[npm-stats]: https://nodei.co/npm/react-form-generator.png?downloads=true
+[npm-stats]: https://nodei.co/npm/react-form-generator.png?compact=true
 [cclimate-image]: https://codeclimate.com/github/AZaviruha/react-form-generator/badges/gpa.svg
 [cclimate-url]: https://codeclimate.com/github/AZaviruha/react-form-generator
 [simple-demo-url]: http://azaviruha.github.io/demo/react-form-generator/simple/
