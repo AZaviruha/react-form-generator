@@ -43,7 +43,6 @@ $(function () {
                 value: {}
             };
             var oldValue = getOrDefault( this, 'props.config.value', [] );
-            console.log( '----- :: ', oldValue, item );
             res.value[ res.id ] = _.contains(oldValue, item.id ) 
                 ? _.without( oldValue, item.id ) : oldValue.concat([ item.id ]);
 
