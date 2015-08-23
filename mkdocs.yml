@@ -7,6 +7,7 @@ pages:
 - ['basic/simple-events-routing.md', 'Basic', 'Simple events routing']
 - ['intermediate/complex-events-routing.md', 'Intermediate', 'Complex events routing']
 - ['intermediate/composite-validation.md', 'Intermediate', 'Composite validation']
+- ['intermediate/custom-components.md', 'Intermediate', 'Custom components']
 - ['api/metadata-format.md', 'API', 'Metadata format description']
 - ['changelog.md', 'Changelog']
 theme: readthedocs
