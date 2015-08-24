@@ -52,7 +52,6 @@ The last command compiles demo and runs simple *express* server.
 * Add unit-tests (in progress).
 * Add full metadata format description (in progress).
 * Add complete CRUD example.
-* Add tutorial for adding custom components, so that users will be able to use their own UI-components.
 
 
 ### Contributors ###
